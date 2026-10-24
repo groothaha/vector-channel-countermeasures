@@ -66,8 +66,9 @@ class Monitor:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["evade", "mimic", "snap"], required=True)
+    ap.add_argument("--mode", choices=["evade", "mimic", "snap", "gumbel"], required=True)
     ap.add_argument("--lam", type=float, required=True, help="회비 손실 가중치. 0이면 추가 학습 대조군")
+    ap.add_argument("--tau", type=float, default=0.5, help="gumbel 모드의 온도")
     ap.add_argument("--seed", type=int, default=0, help="적응을 시작할 E1a 체크포인트 시드")
     ap.add_argument("--steps", type=int, default=1500)
     ap.add_argument("--batch", type=int, default=8)
@@ -82,7 +83,8 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / "adaptive.json"
     rows = json.loads(path.read_text()) if path.exists() else []
-    run = f"{args.mode}_lam{args.lam}_s{args.seed}"
+    run = (f"gumbel_tau{args.tau}_s{args.seed}" if args.mode == "gumbel"
+           else f"{args.mode}_lam{args.lam}_s{args.seed}")
     if any(r["run"] == run for r in rows):
         print(f"{run} 이미 있음, 건너뜀")
         return
@@ -134,6 +136,12 @@ def main():
             # 역전파는 스냅을 항등으로 취급(직진 추정). e*는 최근접 토큰 임베딩(조각별 상수).
             e_star = apply("snap", 1.0, msg, vocab, None)
             msg = e_star + (msg - msg.detach())
+        elif args.mode == "gumbel":
+            # A7 개선: 스냅을 Gumbel-softmax로 이완. 순전파는 실제 토큰 임베딩(확률적 스냅, hard=True)이고
+            # 역전파는 어휘 소프트맥스 기울기로 흐른다. 항등 직진 추정보다 강한 이완 — 붕괴가
+            # 이완이 약해서인지 구조 자체인지 가른다. 온도 tau가 낮으면 결정적 스냅에 가까워짐.
+            logits = F.normalize(msg, dim=-1) @ vocab.En.T          # (b, 16, |V|) 코사인 로짓
+            msg = F.gumbel_softmax(logits, tau=args.tau, hard=True, dim=-1) @ vocab.E
         r_ids, r_mask = encode_docs(r_tok, [d.text for d in docs], device)
         al = F.mse_loss(msg, ch.align_target(receiver, r_ids, r_mask))
         qi = [int(torch.randint(len(d.pairs), (1,), generator=gen)) for d in docs]
