@@ -78,7 +78,7 @@ Without a countermeasure the channels answer 0.81 to 1.00 of questions, against 
 
 - Full snapping (λ = 1) drops every channel to at most 0.004 (0 of 8,000 questions for the 10 pair-only checkpoints) and leaves text unchanged, since text is already made of token embeddings. No checkpoint kept any direction above text (0 of 16 checkpoints; 95% upper bound 17% per checkpoint, Appendix F).
 - Weaker interventions depend on the receiver: a quarter-step snap or noise at σ = 0.5 removes the channels into Qwen and SmolLM2 (at most 0.02) but leaves 0.56 to 0.85 into OLMo, above OLMo's text.
-- Two-bit quantisation removes every channel but also cuts OLMo's text from 0.506 to 0.164, and projection onto 256 token-embedding directions removes text as well (0.000), so neither is selective. Truncating to 8 vectors leaves pair-only channels above text (0.338 against 0.154), so a length cap is not a defence.
+- Two-bit quantisation removes every channel but also cuts OLMo's text from 0.506 to 0.164, and projection onto 256 token-embedding directions removes text as well (0.000 for Qwen and SmolLM2), so neither is selective. Truncating to 8 vectors leaves pair-only channels above text (0.338 against 0.154), so a length cap is not a defence.
 
 The information the receiver uses lies off its vocabulary: message vectors have a mean cosine similarity of 0.68 to 0.74 with their nearest token embedding. Forcing vectors onto the vocabulary is the latent-space analogue of paraphrasing text (Roger & Greenblatt, 2023). These channels were never trained against a countermeasure; Section 4.3 covers adaptive ones.
 
@@ -88,19 +88,19 @@ Snapped to its nearest tokens, the message reads as fragments of the document ("
 
 ### 4.3 Adaptive channels: each evasion walks into another defence
 
-Each evasion beats the defence it targets, and each then fails against a defence it did not target. Table AD2 shows the corner; per-run detail is in Table AD1 (Appendix G).
+Each evasion targets one defence, and none escapes the layer it did not target. Table AD2 shows the corner; per-run detail is in Table AD1 (Appendix G).
 
 **Table AD2.** Adaptive channels against the deployed defences (ranges over 3 seeds; lower λ and single-seed runs in Table AD1). "Probe": frozen deployed monitor's digit accuracy, chance 0.1; "cos": mean cosine to the nearest token embedding, text 1.0.
 
 | Strategy (target) | Beats its target | Then caught by | Channel cost |
 |---|---|---|---|
 | Evade probe, λ = 10 (monitor) | probe → 0.10–0.12 | nearest-token detector: cos stays 0.70–0.72 (threshold 0.95) | none: 0.94–0.98 |
-| Mimic tokens, λ = 1 (detector) | cos → 0.90–0.91 | full snap: 0.000 | ~1 point: 0.96–0.98 |
+| Mimic tokens, λ = 1 (detector) | cos → 0.90–0.91, still below 0.95 | full snap: 0.000 | ~1 point: 0.96–0.98 |
 | Train through snap (canonicalisation) | — | collapse: 0.000 in 3/3 with snap removed | total |
 
 **Evading the monitor succeeds at no cost, and the evasion does not need to move the vectors — so it does not.** A probe retrained on 2,000 fresh pairs from the adapted channel reads 0.76–0.80 again: the monitor survives by being retrained, but the nearest-token detector — a 0.95 threshold on cosine, no paired data, no training — still flags every evasive message (λ = 3 and λ = 1 end at probe 0.140 and 0.192).
 
-**Mimicking tokens pulls the vectors onto the vocabulary, where the message is replaced by real tokens** — a token string that is not the encoding the receiver was trained on, so full snapping drops every mimic run to 0.000; the probe also still reads 0.60–0.67 of its digits (λ = 3 reaches cos 0.931 for 4 points, 0.933).
+**Mimicking tokens pulls the vectors onto the vocabulary, where the message is replaced by real tokens** — a token string that is not the encoding the receiver was trained on, so full snapping drops every mimic run to 0.000; the probe also still reads 0.64–0.67 of its digits (λ = 3 reaches cos 0.931 for 3 points, 0.933).
 
 **Training through the snap never finds a surviving channel.** With task loss computed on the hard-snapped message and gradients passed through the snap as identity, heldout accuracy is 0.000 in all 3 seeds with the countermeasure removed. The vectors still encode the document (a retrained probe reads 0.93–0.98 of digits) but sit far from the vocabulary (cos 0.14–0.17), where the detector flags them; what collapses is the receiver-usable channel — a bound on this training setup, not on the attacker in general.
 
@@ -112,7 +112,7 @@ Two preexisting experiments asked whether one space Z can serve several models. 
 
 To test whether a fixed vector budget stops being enough as messages grow, we trained channels on 8-, 16- and 32-pair documents (98–395 tokens) against best-format text at the same budget (Figure A2, Appendix G).
 
-At 3.1× compression the channel reaches 0.818 to 0.975 at every length, against 0.401 to 0.461 for text, so the vectors needed grow with the message and the advantage stays about twofold. At 6.2× the recipe breaks from 8 pairs on: 6 of 7 runs end at 0.001 or below. The outcome is set early (step-500 accuracy predicts it, AUROC 0.986, Appendix F), and a curriculum starting with four times as many vectors and halving twice rescued the three retried failed seeds above text (0.300 to 0.513 against 0.200 to 0.205; three other failed seeds were not retried; Appendix E).
+At 3.1× compression the channel reaches 0.818 to 0.975 at every length, against 0.401 to 0.461 for text, so the vectors needed grow with the message and the advantage stays about twofold. At 6.2× the recipe breaks from 8 pairs on: 6 of 7 runs end at 0.002 or below. The outcome is set early (step-500 accuracy predicts it, AUROC 0.986, Appendix F), and a curriculum starting with four times as many vectors and halving twice rescued the three retried failed seeds above text (0.300 to 0.513 against 0.200 to 0.205; three other failed seeds were not retried; Appendix E).
 
 ## 5. Discussion and Limitations
 
@@ -168,7 +168,7 @@ Code: https://github.com/groothaha/vector-channel-countermeasures (`sprint/` is 
 
 - **Non-adaptive and narrowly adaptive channels.** The 49 channels of Sections 4.1–4.2 were trained with no countermeasure in the loop and no incentive to hide anything. The adaptive runs of Section 4.3 fine-tune a few checkpoints for 1,500 steps, each against exactly one defence — a frozen linear probe, nearest-token distance, or the hard snap through a straight-through relaxation — so they bound what a first-order evasion achieves, not what a channel trained against the full stack at once, or with a differentiable relaxation better matched to the argmax snap, would do; Westphal et al. (2026) report fine-tuned models evading linear and MLP probes more broadly. Our countermeasure and monitor results are lower bounds on difficulty for the defender, not guarantees.
 - **Cooperative task, no collusion incentive.** The channel carries task content that both models are trained to transmit. We study the carrier, not whether agents would choose to collude through it.
-- **Small models and one synthetic task.** All models are under 1.5B parameters, and the task is key-value recall with 53 to 213 bits per document. Results may not transfer to larger models or natural documents.
+- **Small models and one synthetic task.** All models are under 1.5B parameters, and the task is key-value recall with 53 to 425 bits per document. Results may not transfer to larger models or natural documents.
 - **The alignment warm-up shapes the messages.** The preexisting training starts every vector near the receiver's token embeddings of its document segment. This likely explains why snapped messages look like document fragments; a channel trained without it may sit farther from the vocabulary.
 - **Monitor assumptions.** The probe is trained on 2,000 paired examples of messages and documents. A real monitor may not have paired data; with it, a monitor could do better with more data or capacity than our probes.
 - **Seeds.** 5 checkpoints for countermeasures and probes, 3 seeds for the shared-space and third-model re-runs, 2 seeds for most document-length settings (4 for 8 pairs at 6.2×, 1 for 32 pairs at 6.2×); the three-phase curriculum has 2 seeds at 8 pairs and 1 at 16 pairs. Appendix F gives 95% intervals with checkpoints as the unit; settings with 1 or 2 seeds are reported as values only.
@@ -183,7 +183,7 @@ Code: https://github.com/groothaha/vector-channel-countermeasures (`sprint/` is 
 | What | Code | Runs |
 |---|---|---|
 | Reproduction check | `reproduce.py` | 10 preexisting checkpoints re-evaluated; all matched their recorded heldout accuracy exactly |
-| Countermeasures on pair-only channels | `countermeasures.py`, `countermeasures_text.py` | 10 checkpoints × 21 conditions; text control 2 receivers × 3 noise seeds |
+| Countermeasures on pair-only channels | `countermeasures.py`, `countermeasures_text.py` | 10 checkpoints × 20 conditions; text control 2 receivers × 3 noise seeds |
 | Monitor probes and control task | `monitor_probe.py`, `monitor_control.py` | 10 checkpoints × 3 probes; shuffled-label control on all 10 |
 | Adaptive channels | `adaptive.py` | E1a checkpoints fine-tuned under evasion objectives (probe-evade λ = 10, 1, 3; token-mimic λ = 1, 3; snap-through with a straight-through estimator), 1,500 steps each, 1–3 seeds, on the Mac (MPS, $0) |
 | Probe data efficiency | `e1_probe_eff.py` | The Figure A1 linear probe retrained on 50/200/500/2,000 paired examples, 3 E1a seeds, on the Mac (MPS, $0) |
