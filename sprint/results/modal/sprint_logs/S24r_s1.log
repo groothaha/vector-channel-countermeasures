@@ -1,0 +1,24 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<00:56,  5.08it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1083.50it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  23%|██▎       | 67/290 [00:00<00:00, 619.33it/s]Loading weights:  82%|████████▏ | 239/290 [00:00<00:00, 1231.66it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1255.61it/s]
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights:   1%|          | 1/179 [00:00<01:04,  2.77it/s]Loading weights:  42%|████▏     | 76/179 [00:00<00:00, 213.75it/s]Loading weights:  67%|██████▋   | 120/179 [00:00<00:00, 238.27it/s]Loading weights:  88%|████████▊ | 157/179 [00:00<00:00, 248.58it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 219.19it/s]
+tag=S24r_s1 device=cuda models=['Qwen/Qwen2.5-0.5B-Instruct', 'HuggingFaceTB/SmolLM2-360M-Instruct', 'allenai/OLMo-2-0425-1B-Instruct'] layers=[3, 4, 2] trainable=['allenai/OLMo-2-0425-1B-Instruct'] params=5.79M dirs=5
+warmup  200  Qwen2.5>OLMo align 0.2845  48s
+warmup  400  Qwen2.5>OLMo align 0.2587  96s
+warmup  600  Qwen2.5>OLMo align 0.2537  145s
+warmup  800  Qwen2.5>OLMo align 0.2524  194s
+warmup 1000  Qwen2.5>OLMo align 0.2427  244s
+warmup 1200  Qwen2.5>OLMo align 0.2414  293s
+warmup 1400  Qwen2.5>OLMo align 0.2352  343s
+warmup 1600  Qwen2.5>OLMo align 0.2359  393s
+step     0  Qwen2.5>OLMo 0.000  SmolLM2>OLMo 0.000  OLMo>Qwen2.5 0.004  OLMo>SmolLM2 0.000  OLMo>OLMo 0.008  393s
+step  1000  Qwen2.5>OLMo 0.883  SmolLM2>OLMo 0.867  OLMo>Qwen2.5 0.887  OLMo>SmolLM2 0.824  OLMo>OLMo 0.914  859s
+step  2000  Qwen2.5>OLMo 0.969  SmolLM2>OLMo 0.934  OLMo>Qwen2.5 0.969  OLMo>SmolLM2 0.961  OLMo>OLMo 0.969  1326s
+--- step 2001: 벡터 수 16로 변경
+step  3000  Qwen2.5>OLMo 0.984  SmolLM2>OLMo 0.980  OLMo>Qwen2.5 0.496  OLMo>SmolLM2 0.422  OLMo>OLMo 0.938  1758s
+step  4000  Qwen2.5>OLMo 0.992  SmolLM2>OLMo 0.992  OLMo>Qwen2.5 0.777  OLMo>SmolLM2 0.789  OLMo>OLMo 0.969  2189s
+step  5000  Qwen2.5>OLMo 0.996  SmolLM2>OLMo 0.988  OLMo>Qwen2.5 0.871  OLMo>SmolLM2 0.914  OLMo>OLMo 0.984  2617s
+step  6000  Qwen2.5>OLMo 1.000  SmolLM2>OLMo 1.000  OLMo>Qwen2.5 0.875  OLMo>SmolLM2 0.918  OLMo>OLMo 0.980  3045s
+step  7000  Qwen2.5>OLMo 0.992  SmolLM2>OLMo 0.996  OLMo>Qwen2.5 0.914  OLMo>SmolLM2 0.922  OLMo>OLMo 0.992  3474s
+step  8000  Qwen2.5>OLMo 0.990  SmolLM2>OLMo 0.988  OLMo>Qwen2.5 0.910  OLMo>SmolLM2 0.933  OLMo>OLMo 0.998  3902s
+최종(보류 전체 200문서)  Qwen2.5>OLMo 0.990(swap 0.000)  SmolLM2>OLMo 0.988(swap 0.000)  OLMo>Qwen2.5 0.910(swap 0.000)  OLMo>SmolLM2 0.933(swap 0.000)  OLMo>OLMo 0.998(swap 0.000)
+저장: /mc/results/stage2_S24r_s1.json, /mc/results/stage2_S24r_s1.pt

@@ -1,0 +1,216 @@
+{
+  "device": "mps",
+  "rows": [
+    {
+      "setting": "E1a",
+      "seed": 0,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9612500071525574,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9637153744697571
+      },
+      "recorded": {
+        "full": 0.9612500071525574,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9637153744697571
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "E1a",
+      "seed": 1,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9162499904632568,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9593693017959595
+      },
+      "recorded": {
+        "full": 0.9162499904632568,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9593693017959595
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "E1a",
+      "seed": 2,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9662500023841858,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9675561189651489
+      },
+      "recorded": {
+        "full": 0.9662500023841858,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9675561189651489
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "E1a",
+      "seed": 3,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9750000238418579,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9721043109893799
+      },
+      "recorded": {
+        "full": 0.9750000238418579,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9721043109893799
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "E1a",
+      "seed": 4,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9537500143051147,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9698807597160339
+      },
+      "recorded": {
+        "full": 0.9537500143051147,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9698807597160339
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "S2a",
+      "seed": 0,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9737499952316284,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9412698149681091
+      },
+      "recorded": {
+        "full": 0.9737499952316284,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9412698149681091
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "S2a",
+      "seed": 1,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9487500190734863,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9478174448013306
+      },
+      "recorded": {
+        "full": 0.9487500190734863,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9478174448013306
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "S2a",
+      "seed": 2,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.8712499737739563,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.8852182626724243
+      },
+      "recorded": {
+        "full": 0.8712499737739563,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.8852182626724243
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "S2a",
+      "seed": 3,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9674999713897705,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9401785731315613
+      },
+      "recorded": {
+        "full": 0.9674999713897705,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9401785731315613
+      },
+      "diff_full": 0.0
+    },
+    {
+      "setting": "S2a",
+      "seed": 4,
+      "k": 16,
+      "n_docs": 200,
+      "now": {
+        "full": 0.9399999976158142,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9291666746139526
+      },
+      "recorded": {
+        "full": 0.9399999976158142,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9291666746139526
+      },
+      "diff_full": 0.0
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,8 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<02:37,  1.84it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 504.30it/s]
+sender=Qwen/Qwen2.5-0.5B-Instruct receiver=Qwen/Qwen2.5-0.5B-Instruct
+tag=bench_A10 device=cuda k=16 z=512 layers=[3] pool_layers=1 read=pool dec_attn=0 zero_gate=False sender_lora=0 trainable=4.01M train=2000 heldout=32
+warmup  100  align 0.1553  11s
+step     0  k=16  train 0.000  heldout 0.000 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.363  15s
+step   300  k=16  train 0.000  heldout 0.000 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.468  85s
+최종(보류 전체 32문서)  full 0.000 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.468
+저장: /mc/results/stage1_bench_A10.json, /mc/results/stage1_bench_A10.pt

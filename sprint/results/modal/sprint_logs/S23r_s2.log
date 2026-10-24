@@ -1,0 +1,39 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<00:54,  5.27it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1118.20it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  20%|██        | 59/290 [00:00<00:00, 570.67it/s]Loading weights:  78%|███████▊  | 226/290 [00:00<00:00, 1177.13it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1219.15it/s]
+tag=S23r_s2 device=cuda models=['Qwen/Qwen2.5-0.5B-Instruct', 'HuggingFaceTB/SmolLM2-360M-Instruct'] layers=[3, 4] trainable=['Qwen/Qwen2.5-0.5B-Instruct', 'HuggingFaceTB/SmolLM2-360M-Instruct'] params=8.14M dirs=4
+warmup  200  Qwen2.5>Qwen2.5 align 0.2447  28s
+warmup  400  Qwen2.5>Qwen2.5 align 0.1601  55s
+warmup  600  Qwen2.5>Qwen2.5 align 0.1420  82s
+warmup  800  Qwen2.5>Qwen2.5 align 0.1403  110s
+warmup 1000  Qwen2.5>Qwen2.5 align 0.1321  138s
+warmup 1200  Qwen2.5>Qwen2.5 align 0.1189  166s
+warmup 1400  Qwen2.5>Qwen2.5 align 0.1157  194s
+warmup 1600  Qwen2.5>Qwen2.5 align 0.1011  222s
+step     0  Qwen2.5>Qwen2.5 0.000  Qwen2.5>SmolLM2 0.000  SmolLM2>Qwen2.5 0.000  SmolLM2>SmolLM2 0.000  222s
+step  1000  Qwen2.5>Qwen2.5 0.875  Qwen2.5>SmolLM2 0.770  SmolLM2>Qwen2.5 0.801  SmolLM2>SmolLM2 0.801  521s
+step  2000  Qwen2.5>Qwen2.5 0.945  Qwen2.5>SmolLM2 0.934  SmolLM2>Qwen2.5 0.914  SmolLM2>SmolLM2 0.902  820s
+step  3000  Qwen2.5>Qwen2.5 0.965  Qwen2.5>SmolLM2 0.973  SmolLM2>Qwen2.5 0.953  SmolLM2>SmolLM2 0.973  1120s
+step  4000  Qwen2.5>Qwen2.5 0.965  Qwen2.5>SmolLM2 0.965  SmolLM2>Qwen2.5 0.977  SmolLM2>SmolLM2 0.969  1420s
+step  5000  Qwen2.5>Qwen2.5 0.969  Qwen2.5>SmolLM2 0.973  SmolLM2>Qwen2.5 0.969  SmolLM2>SmolLM2 0.988  1719s
+step  6000  Qwen2.5>Qwen2.5 0.980  Qwen2.5>SmolLM2 0.977  SmolLM2>Qwen2.5 0.984  SmolLM2>SmolLM2 0.984  2019s
+--- step 6001: 벡터 수 16로 변경
+step  7000  Qwen2.5>Qwen2.5 0.008  Qwen2.5>SmolLM2 0.004  SmolLM2>Qwen2.5 0.020  SmolLM2>SmolLM2 0.023  2282s
+step  8000  Qwen2.5>Qwen2.5 0.113  Qwen2.5>SmolLM2 0.074  SmolLM2>Qwen2.5 0.102  SmolLM2>SmolLM2 0.066  2543s
+step  9000  Qwen2.5>Qwen2.5 0.508  Qwen2.5>SmolLM2 0.359  SmolLM2>Qwen2.5 0.531  SmolLM2>SmolLM2 0.477  2804s
+step 10000  Qwen2.5>Qwen2.5 0.598  Qwen2.5>SmolLM2 0.562  SmolLM2>Qwen2.5 0.711  SmolLM2>SmolLM2 0.566  3065s
+step 11000  Qwen2.5>Qwen2.5 0.684  Qwen2.5>SmolLM2 0.621  SmolLM2>Qwen2.5 0.719  SmolLM2>SmolLM2 0.574  3327s
+step 12000  Qwen2.5>Qwen2.5 0.707  Qwen2.5>SmolLM2 0.625  SmolLM2>Qwen2.5 0.617  SmolLM2>SmolLM2 0.664  3588s
+step 13000  Qwen2.5>Qwen2.5 0.754  Qwen2.5>SmolLM2 0.711  SmolLM2>Qwen2.5 0.742  SmolLM2>SmolLM2 0.676  3849s
+step 14000  Qwen2.5>Qwen2.5 0.715  Qwen2.5>SmolLM2 0.723  SmolLM2>Qwen2.5 0.672  SmolLM2>SmolLM2 0.734  4111s
+step 15000  Qwen2.5>Qwen2.5 0.680  Qwen2.5>SmolLM2 0.641  SmolLM2>Qwen2.5 0.789  SmolLM2>SmolLM2 0.699  4372s
+step 16000  Qwen2.5>Qwen2.5 0.762  Qwen2.5>SmolLM2 0.695  SmolLM2>Qwen2.5 0.762  SmolLM2>SmolLM2 0.742  4634s
+step 17000  Qwen2.5>Qwen2.5 0.762  Qwen2.5>SmolLM2 0.750  SmolLM2>Qwen2.5 0.773  SmolLM2>SmolLM2 0.766  4896s
+step 18000  Qwen2.5>Qwen2.5 0.816  Qwen2.5>SmolLM2 0.797  SmolLM2>Qwen2.5 0.766  SmolLM2>SmolLM2 0.746  5158s
+step 19000  Qwen2.5>Qwen2.5 0.836  Qwen2.5>SmolLM2 0.832  SmolLM2>Qwen2.5 0.848  SmolLM2>SmolLM2 0.750  5420s
+step 20000  Qwen2.5>Qwen2.5 0.863  Qwen2.5>SmolLM2 0.727  SmolLM2>Qwen2.5 0.871  SmolLM2>SmolLM2 0.730  5682s
+step 21000  Qwen2.5>Qwen2.5 0.844  Qwen2.5>SmolLM2 0.797  SmolLM2>Qwen2.5 0.758  SmolLM2>SmolLM2 0.734  5943s
+step 22000  Qwen2.5>Qwen2.5 0.840  Qwen2.5>SmolLM2 0.863  SmolLM2>Qwen2.5 0.875  SmolLM2>SmolLM2 0.801  6205s
+step 23000  Qwen2.5>Qwen2.5 0.852  Qwen2.5>SmolLM2 0.824  SmolLM2>Qwen2.5 0.859  SmolLM2>SmolLM2 0.844  6467s
+step 24000  Qwen2.5>Qwen2.5 0.865  Qwen2.5>SmolLM2 0.809  SmolLM2>Qwen2.5 0.853  SmolLM2>SmolLM2 0.806  6728s
+최종(보류 전체 200문서)  Qwen2.5>Qwen2.5 0.865(swap 0.000)  Qwen2.5>SmolLM2 0.809(swap 0.000)  SmolLM2>Qwen2.5 0.853(swap 0.000)  SmolLM2>SmolLM2 0.806(swap 0.000)
+저장: /mc/results/stage2_S23r_s2.json, /mc/results/stage2_S23r_s2.pt

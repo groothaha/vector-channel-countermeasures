@@ -1,0 +1,28 @@
+doclen: n_pairs=4 -> stage1_depth.main(--tag L4_k8_s0 --seed 0 --layers 3 --task-lr 3e-4 --task-lr-ramp 300 --eval-every 500 --k-schedule 16:1500,8:4500)
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<00:56,  5.08it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1011.98it/s]
+sender=Qwen/Qwen2.5-0.5B-Instruct receiver=Qwen/Qwen2.5-0.5B-Instruct
+tag=L4_k8_s0 device=cuda k=16 z=512 layers=[3] pool_layers=1 read=pool dec_attn=0 zero_gate=False sender_lora=0 trainable=4.01M train=2000 heldout=200
+warmup  100  align 0.1553  14s
+warmup  200  align 0.1254  28s
+warmup  300  align 0.1085  42s
+warmup  400  align 0.0960  56s
+warmup  500  align 0.0773  70s
+warmup  600  align 0.0572  85s
+warmup  700  align 0.0563  99s
+warmup  800  align 0.0477  113s
+step     0  k=16  train 0.000  heldout 0.000 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.370  121s
+step   500  k=16  train 0.113  heldout 0.113 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.751  262s
+step  1000  k=16  train 0.594  heldout 0.605 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.854  402s
+step  1500  k=16  train 0.590  heldout 0.602 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.875  542s
+--- step 1501: 벡터 수 8로 변경
+step  2000  k=8   train 0.199  heldout 0.148 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.657  671s
+step  2500  k=8   train 0.336  heldout 0.246 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.705  801s
+step  3000  k=8   train 0.320  heldout 0.309 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.718  930s
+step  3500  k=8   train 0.609  heldout 0.559 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.766  1060s
+step  4000  k=8   train 0.469  heldout 0.422 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.776  1189s
+step  4500  k=8   train 0.656  heldout 0.582 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.790  1318s
+step  5000  k=8   train 0.602  heldout 0.609 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.801  1448s
+step  5500  k=8   train 0.699  heldout 0.660 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.805  1577s
+step  6000  k=8   train 0.734  heldout 0.648 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.817  1707s
+최종(보류 전체 200문서)  full 0.655 / swapped 0.000 / zero 0.000 / none 0.000  recon_tok 0.823
+저장: /mc/results/stage1_L4_k8_s0.json, /mc/results/stage1_L4_k8_s0.pt

@@ -1,0 +1,45 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<00:46,  6.28it/s]Loading weights:  72%|███████▏  | 208/290 [00:00<00:00, 944.18it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 923.91it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 36/290 [00:00<00:00, 340.27it/s]Loading weights:  51%|█████     | 147/290 [00:00<00:00, 782.42it/s]Loading weights:  96%|█████████▌| 278/290 [00:00<00:00, 1017.63it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 922.74it/s] 
+text>Qwen2.5  none0:0.373  snap0.25:0.373  snap1.0:0.373  noise0.25:0.373  noise0.5:0.373  quant4:0.375  quant2:0.360  trunc8:0.154
+text>SmolLM2  none0:0.286  snap0.25:0.286  snap1.0:0.286  noise0.25:0.296  noise0.5:0.294  quant4:0.285  quant2:0.250  trunc8:0.132
+S23r s0 Qwen2.5>Qwen2.5  none0:0.960  snap0.25:0.000  snap1.0:0.000  noise0.25:0.433  noise0.5:0.004  quant4:0.868  quant2:0.000  trunc8:0.005  73s
+S23r s0 Qwen2.5>SmolLM2  none0:0.926  snap0.25:0.000  snap1.0:0.000  noise0.25:0.051  noise0.5:0.000  quant4:0.255  quant2:0.000  trunc8:0.020  91s
+S23r s0 SmolLM2>Qwen2.5  none0:0.959  snap0.25:0.000  snap1.0:0.000  noise0.25:0.419  noise0.5:0.006  quant4:0.869  quant2:0.000  trunc8:0.002  111s
+S23r s0 SmolLM2>SmolLM2  none0:0.925  snap0.25:0.000  snap1.0:0.000  noise0.25:0.061  noise0.5:0.000  quant4:0.317  quant2:0.000  trunc8:0.018  130s
+S23r s1 Qwen2.5>Qwen2.5  none0:0.901  snap0.25:0.000  snap1.0:0.000  noise0.25:0.459  noise0.5:0.005  quant4:0.811  quant2:0.000  trunc8:0.001  151s
+S23r s1 Qwen2.5>SmolLM2  none0:0.962  snap0.25:0.000  snap1.0:0.000  noise0.25:0.104  noise0.5:0.000  quant4:0.416  quant2:0.000  trunc8:0.056  170s
+S23r s1 SmolLM2>Qwen2.5  none0:0.923  snap0.25:0.004  snap1.0:0.000  noise0.25:0.434  noise0.5:0.010  quant4:0.839  quant2:0.000  trunc8:0.000  190s
+S23r s1 SmolLM2>SmolLM2  none0:0.954  snap0.25:0.000  snap1.0:0.000  noise0.25:0.099  noise0.5:0.000  quant4:0.391  quant2:0.000  trunc8:0.049  209s
+S23r s2 Qwen2.5>Qwen2.5  none0:0.865  snap0.25:0.000  snap1.0:0.000  noise0.25:0.330  noise0.5:0.001  quant4:0.798  quant2:0.000  trunc8:0.000  230s
+S23r s2 Qwen2.5>SmolLM2  none0:0.809  snap0.25:0.001  snap1.0:0.000  noise0.25:0.132  noise0.5:0.000  quant4:0.359  quant2:0.000  trunc8:0.006  249s
+S23r s2 SmolLM2>Qwen2.5  none0:0.853  snap0.25:0.000  snap1.0:0.000  noise0.25:0.299  noise0.5:0.002  quant4:0.719  quant2:0.000  trunc8:0.000  269s
+S23r s2 SmolLM2>SmolLM2  none0:0.806  snap0.25:0.002  snap1.0:0.000  noise0.25:0.119  noise0.5:0.000  quant4:0.334  quant2:0.000  trunc8:0.004  288s
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights:   1%|          | 1/179 [00:00<00:50,  3.49it/s]Loading weights:  23%|██▎       | 42/179 [00:00<00:00, 137.81it/s]Loading weights:  37%|███▋      | 66/179 [00:00<00:00, 153.79it/s]Loading weights:  50%|████▉     | 89/179 [00:00<00:00, 166.53it/s]Loading weights:  62%|██████▏   | 111/179 [00:00<00:00, 181.22it/s]Loading weights:  74%|███████▎  | 132/179 [00:00<00:00, 175.42it/s]Loading weights:  85%|████████▍ | 152/179 [00:00<00:00, 173.83it/s]Loading weights: 100%|██████████| 179/179 [00:01<00:00, 167.36it/s]
+text>OLMo  none0:0.506  snap0.25:0.506  snap1.0:0.506  noise0.25:0.498  noise0.5:0.475  quant4:0.461  quant2:0.164  trunc8:0.244
+S24r s0 Qwen2.5>Qwen2.5  none0:0.950  snap0.25:0.000  snap1.0:0.000  noise0.25:0.386  noise0.5:0.006  quant4:0.859  quant2:0.000  trunc8:0.009  378s
+S24r s0 Qwen2.5>SmolLM2  none0:0.950  snap0.25:0.001  snap1.0:0.000  noise0.25:0.289  noise0.5:0.000  quant4:0.630  quant2:0.000  trunc8:0.041  396s
+S24r s0 Qwen2.5>OLMo  none0:0.993  snap0.25:0.754  snap1.0:0.000  noise0.25:0.959  noise0.5:0.636  quant4:0.777  quant2:0.000  trunc8:0.479  439s
+S24r s0 SmolLM2>Qwen2.5  none0:0.935  snap0.25:0.000  snap1.0:0.000  noise0.25:0.425  noise0.5:0.006  quant4:0.844  quant2:0.000  trunc8:0.021  459s
+S24r s0 SmolLM2>SmolLM2  none0:0.956  snap0.25:0.001  snap1.0:0.000  noise0.25:0.346  noise0.5:0.001  quant4:0.586  quant2:0.000  trunc8:0.049  478s
+S24r s0 SmolLM2>OLMo  none0:0.988  snap0.25:0.815  snap1.0:0.000  noise0.25:0.955  noise0.5:0.650  quant4:0.785  quant2:0.000  trunc8:0.482  521s
+S24r s0 OLMo>Qwen2.5  none0:0.936  snap0.25:0.000  snap1.0:0.000  noise0.25:0.369  noise0.5:0.006  quant4:0.780  quant2:0.000  trunc8:0.013  542s
+S24r s0 OLMo>SmolLM2  none0:0.956  snap0.25:0.000  snap1.0:0.000  noise0.25:0.287  noise0.5:0.000  quant4:0.577  quant2:0.000  trunc8:0.031  561s
+S24r s0 OLMo>OLMo  none0:0.996  snap0.25:0.853  snap1.0:0.004  noise0.25:0.983  noise0.5:0.762  quant4:0.825  quant2:0.000  trunc8:0.486  605s
+S24r s1 Qwen2.5>Qwen2.5  none0:0.950  snap0.25:0.000  snap1.0:0.000  noise0.25:0.398  noise0.5:0.002  quant4:0.859  quant2:0.000  trunc8:0.009  627s
+S24r s1 Qwen2.5>SmolLM2  none0:0.950  snap0.25:0.001  snap1.0:0.000  noise0.25:0.196  noise0.5:0.001  quant4:0.630  quant2:0.000  trunc8:0.041  646s
+S24r s1 Qwen2.5>OLMo  none0:0.990  snap0.25:0.840  snap1.0:0.000  noise0.25:0.971  noise0.5:0.564  quant4:0.700  quant2:0.000  trunc8:0.426  689s
+S24r s1 SmolLM2>Qwen2.5  none0:0.935  snap0.25:0.000  snap1.0:0.000  noise0.25:0.440  noise0.5:0.004  quant4:0.844  quant2:0.000  trunc8:0.021  709s
+S24r s1 SmolLM2>SmolLM2  none0:0.956  snap0.25:0.001  snap1.0:0.000  noise0.25:0.270  noise0.5:0.004  quant4:0.586  quant2:0.000  trunc8:0.049  728s
+S24r s1 SmolLM2>OLMo  none0:0.988  snap0.25:0.854  snap1.0:0.000  noise0.25:0.974  noise0.5:0.626  quant4:0.717  quant2:0.000  trunc8:0.410  771s
+S24r s1 OLMo>Qwen2.5  none0:0.910  snap0.25:0.000  snap1.0:0.000  noise0.25:0.379  noise0.5:0.002  quant4:0.812  quant2:0.000  trunc8:0.013  792s
+S24r s1 OLMo>SmolLM2  none0:0.933  snap0.25:0.000  snap1.0:0.000  noise0.25:0.244  noise0.5:0.000  quant4:0.585  quant2:0.000  trunc8:0.047  811s
+S24r s1 OLMo>OLMo  none0:0.998  snap0.25:0.819  snap1.0:0.001  noise0.25:0.983  noise0.5:0.674  quant4:0.811  quant2:0.000  trunc8:0.459  855s
+S24r s2 Qwen2.5>Qwen2.5  none0:0.950  snap0.25:0.000  snap1.0:0.000  noise0.25:0.384  noise0.5:0.004  quant4:0.859  quant2:0.000  trunc8:0.009  876s
+S24r s2 Qwen2.5>SmolLM2  none0:0.950  snap0.25:0.001  snap1.0:0.000  noise0.25:0.254  noise0.5:0.001  quant4:0.630  quant2:0.000  trunc8:0.041  895s
+S24r s2 Qwen2.5>OLMo  none0:0.991  snap0.25:0.640  snap1.0:0.000  noise0.25:0.971  noise0.5:0.706  quant4:0.776  quant2:0.000  trunc8:0.386  938s
+S24r s2 SmolLM2>Qwen2.5  none0:0.935  snap0.25:0.000  snap1.0:0.000  noise0.25:0.439  noise0.5:0.006  quant4:0.844  quant2:0.000  trunc8:0.021  958s
+S24r s2 SmolLM2>SmolLM2  none0:0.956  snap0.25:0.001  snap1.0:0.000  noise0.25:0.289  noise0.5:0.001  quant4:0.586  quant2:0.000  trunc8:0.049  977s
+S24r s2 SmolLM2>OLMo  none0:0.980  snap0.25:0.673  snap1.0:0.000  noise0.25:0.964  noise0.5:0.709  quant4:0.780  quant2:0.000  trunc8:0.380  1020s
+S24r s2 OLMo>Qwen2.5  none0:0.942  snap0.25:0.000  snap1.0:0.000  noise0.25:0.359  noise0.5:0.006  quant4:0.834  quant2:0.000  trunc8:0.014  1040s
+S24r s2 OLMo>SmolLM2  none0:0.954  snap0.25:0.000  snap1.0:0.000  noise0.25:0.239  noise0.5:0.000  quant4:0.543  quant2:0.000  trunc8:0.030  1060s
+S24r s2 OLMo>OLMo  none0:0.994  snap0.25:0.812  snap1.0:0.004  noise0.25:0.986  noise0.5:0.788  quant4:0.854  quant2:0.000  trunc8:0.430  1103s

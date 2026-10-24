@@ -1,0 +1,272 @@
+{
+  "args": {
+    "tag": "S24r_s0",
+    "models": "Q,S",
+    "layers": "3,4",
+    "load": "results/J1/stage2_S23_joint_s1.pt",
+    "add": "O",
+    "add_layer": 2,
+    "k_schedule": "32:2000,16:6000",
+    "z_dim": 512,
+    "n_train": 2000,
+    "n_heldout": 200,
+    "warmup_steps": 1600,
+    "warmup_batch": 32,
+    "batch": 8,
+    "lr": 0.001,
+    "task_lr": 0.0003,
+    "task_lr_ramp": 300,
+    "recon_weight": 0.5,
+    "align_weight": 1.0,
+    "eval_every": 1000,
+    "eval_docs": 64,
+    "seed": 0,
+    "data_seed": 0
+  },
+  "models": [
+    "Qwen/Qwen2.5-0.5B-Instruct",
+    "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "allenai/OLMo-2-0425-1B-Instruct"
+  ],
+  "layers": [
+    3,
+    4,
+    2
+  ],
+  "trainable": [
+    "allenai/OLMo-2-0425-1B-Instruct"
+  ],
+  "history": [
+    {
+      "step": 0,
+      "sec": 397.6627926826477,
+      "Qwen2.5>OLMo": {
+        "full": 0.0,
+        "recon_tok": 0.3068661391735077
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.0,
+        "recon_tok": 0.2903720736503601
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.0,
+        "recon_tok": 0.6490066051483154
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.0078125,
+        "recon_tok": 0.39301174879074097
+      },
+      "OLMo>OLMo": {
+        "full": 0.0078125,
+        "recon_tok": 0.5600306987762451
+      }
+    },
+    {
+      "step": 1000,
+      "sec": 870.1876134872437,
+      "Qwen2.5>OLMo": {
+        "full": 0.8671875,
+        "recon_tok": 0.888761043548584
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.8359375,
+        "recon_tok": 0.8761028051376343
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.93359375,
+        "recon_tok": 0.9135919213294983
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.91796875,
+        "recon_tok": 0.8920841217041016
+      },
+      "OLMo>OLMo": {
+        "full": 0.89453125,
+        "recon_tok": 0.9282700419425964
+      }
+    },
+    {
+      "step": 2000,
+      "sec": 1342.6287899017334,
+      "Qwen2.5>OLMo": {
+        "full": 0.984375,
+        "recon_tok": 0.9213655591011047
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.953125,
+        "recon_tok": 0.9018028378486633
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.921875,
+        "recon_tok": 0.9454430937767029
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.9296875,
+        "recon_tok": 0.9217687249183655
+      },
+      "OLMo>OLMo": {
+        "full": 0.9765625,
+        "recon_tok": 0.9654775857925415
+      }
+    },
+    {
+      "step": 3000,
+      "sec": 1779.064017534256,
+      "Qwen2.5>OLMo": {
+        "full": 0.97265625,
+        "recon_tok": 0.9347909688949585
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.953125,
+        "recon_tok": 0.9159954190254211
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.8046875,
+        "recon_tok": 0.8959318995475769
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.7890625,
+        "recon_tok": 0.8790971040725708
+      },
+      "OLMo>OLMo": {
+        "full": 0.97265625,
+        "recon_tok": 0.9405446648597717
+      }
+    },
+    {
+      "step": 4000,
+      "sec": 2214.166302919388,
+      "Qwen2.5>OLMo": {
+        "full": 1.0,
+        "recon_tok": 0.9409282803535461
+      },
+      "SmolLM2>OLMo": {
+        "full": 1.0,
+        "recon_tok": 0.9186804890632629
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.80859375,
+        "recon_tok": 0.9139072895050049
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.8046875,
+        "recon_tok": 0.8973407745361328
+      },
+      "OLMo>OLMo": {
+        "full": 0.9765625,
+        "recon_tok": 0.9520521759986877
+      }
+    },
+    {
+      "step": 5000,
+      "sec": 2648.384697198868,
+      "Qwen2.5>OLMo": {
+        "full": 0.98828125,
+        "recon_tok": 0.9474491477012634
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.97265625,
+        "recon_tok": 0.9232834577560425
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.9140625,
+        "recon_tok": 0.933459460735321
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.94921875,
+        "recon_tok": 0.9081632494926453
+      },
+      "OLMo>OLMo": {
+        "full": 0.98046875,
+        "recon_tok": 0.9681626558303833
+      }
+    },
+    {
+      "step": 6000,
+      "sec": 3082.0684151649475,
+      "Qwen2.5>OLMo": {
+        "full": 0.99609375,
+        "recon_tok": 0.949367105960846
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.9921875,
+        "recon_tok": 0.9286535978317261
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.921875,
+        "recon_tok": 0.9287291169166565
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.94921875,
+        "recon_tok": 0.918367326259613
+      },
+      "OLMo>OLMo": {
+        "full": 1.0,
+        "recon_tok": 0.9696969985961914
+      }
+    },
+    {
+      "step": 7000,
+      "sec": 3514.6509697437286,
+      "Qwen2.5>OLMo": {
+        "full": 0.99609375,
+        "recon_tok": 0.9535865187644958
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.98046875,
+        "recon_tok": 0.9217491149902344
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.91796875,
+        "recon_tok": 0.9331440925598145
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.9375,
+        "recon_tok": 0.9171304702758789
+      },
+      "OLMo>OLMo": {
+        "full": 0.99609375,
+        "recon_tok": 0.9716148972511292
+      }
+    },
+    {
+      "step": 8000,
+      "sec": 3948.3059163093567,
+      "Qwen2.5>OLMo": {
+        "full": 0.9925000071525574,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9513214230537415
+      },
+      "SmolLM2>OLMo": {
+        "full": 0.987500011920929,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9271051287651062
+      },
+      "OLMo>Qwen2.5": {
+        "full": 0.9362499713897705,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9378411173820496
+      },
+      "OLMo>SmolLM2": {
+        "full": 0.956250011920929,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9236111044883728
+      },
+      "OLMo>OLMo": {
+        "full": 0.9962499737739563,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9695144295692444
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<02:02,  2.35it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 670.85it/s]
+E1a s0 k=16  full 0.961 (기록 0.961, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  58s
+E1a s1 k=16  full 0.916 (기록 0.916, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  116s
+E1a s2 k=16  full 0.966 (기록 0.966, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  172s
+E1a s3 k=16  full 0.975 (기록 0.975, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  228s
+E1a s4 k=16  full 0.954 (기록 0.954, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  285s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:34,  3.04it/s]Loading weights:  51%|█████     | 147/290 [00:00<00:00, 426.53it/s]Loading weights:  77%|███████▋  | 223/290 [00:00<00:00, 358.37it/s]Loading weights:  96%|█████████▌| 278/290 [00:00<00:00, 352.27it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 323.37it/s]
+S2a s0 k=16  full 0.974 (기록 0.974, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  342s
+S2a s1 k=16  full 0.949 (기록 0.949, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  398s
+S2a s2 k=16  full 0.871 (기록 0.871, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  452s
+S2a s3 k=16  full 0.967 (기록 0.967, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  506s
+S2a s4 k=16  full 0.940 (기록 0.940, 차이 +0.000)  swapped 0.000  zero 0.000  none 0.000  562s
+재현 관문(|차이| <= 0.02 전부): 통과

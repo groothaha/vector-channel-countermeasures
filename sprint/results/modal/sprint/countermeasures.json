@@ -1,0 +1,2636 @@
+{
+ "rows": [
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9612500071525574
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.9275000095367432
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.6100000143051147
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.019999999552965164
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9599999785423279
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.9287499785423279
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.05375000089406967
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.029999999329447746
+  },
+  {
+   "setting": "E1a",
+   "seed": 0,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.004999999888241291
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9162499904632568
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.8762500286102295
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.4625000059604645
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.012500000186264515
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9137499928474426
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.8212500214576721
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.6887500286102295
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.45875000953674316
+  },
+  {
+   "setting": "E1a",
+   "seed": 1,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.23125000298023224
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9662500023841858
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.9437500238418579
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.6025000214576721
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.009999999776482582
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9649999737739563
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.918749988079071
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.44749999046325684
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.23749999701976776
+  },
+  {
+   "setting": "E1a",
+   "seed": 2,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.02500000037252903
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9750000238418579
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.9275000095367432
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.48875001072883606
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.007499999832361937
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9750000238418579
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.8974999785423279
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.7074999809265137
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.47749999165534973
+  },
+  {
+   "setting": "E1a",
+   "seed": 3,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.23999999463558197
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9537500143051147
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.9337499737739563
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.47999998927116394
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.008750000037252903
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9549999833106995
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.8862500190734863
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.7262499928474426
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.48625001311302185
+  },
+  {
+   "setting": "E1a",
+   "seed": 4,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.23499999940395355
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9737499952316284
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.9350000023841858
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.2199999988079071
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9762499928474426
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.5587499737739563
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.014999999664723873
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.017500000074505806
+  },
+  {
+   "setting": "S2a",
+   "seed": 0,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9487500190734863
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.8824999928474426
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.1599999964237213
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.949999988079071
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.17749999463558197
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.7049999833106995
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.4337500035762787
+  },
+  {
+   "setting": "S2a",
+   "seed": 1,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.017500000074505806
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.8712499737739563
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.824999988079071
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.2874999940395355
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.012500000186264515
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.8675000071525574
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.5849999785423279
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.014999999664723873
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.004999999888241291
+  },
+  {
+   "setting": "S2a",
+   "seed": 2,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9674999713897705
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.9412500262260437
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.3499999940395355
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9624999761581421
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.5362499952316284
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.5
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.29374998807907104
+  },
+  {
+   "setting": "S2a",
+   "seed": 3,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "none",
+   "x": 0,
+   "acc": 0.9399999976158142
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 0.1,
+   "acc": 0.90625
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 0.25,
+   "acc": 0.3162499964237213
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 0.5,
+   "acc": 0.0012499999720603228
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "noise",
+   "x": 2.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 0.25,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 0.5,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 0.75,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "snap",
+   "x": 1.0,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 8,
+   "acc": 0.9362499713897705
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 4,
+   "acc": 0.5137500166893005
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 2,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "quant",
+   "x": 1,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "proj",
+   "x": 256,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "proj",
+   "x": 64,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "proj",
+   "x": 16,
+   "acc": 0.0
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "trunc",
+   "x": 12,
+   "acc": 0.4050000011920929
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "trunc",
+   "x": 8,
+   "acc": 0.11749999970197678
+  },
+  {
+   "setting": "S2a",
+   "seed": 4,
+   "cm": "trunc",
+   "x": 4,
+   "acc": 0.02250000089406967
+  }
+ ],
+ "nearest": {
+  "E1a_s0": {
+   "cos_mean": 0.7402549386024475,
+   "cos_p10": 0.5532000064849854,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " value",
+      "1",
+      "5",
+      " Code",
+      " ",
+      "6",
+      ".",
+      " V",
+      " has",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.625,
+      0.573,
+      0.906,
+      0.854,
+      0.852,
+      0.58,
+      0.865,
+      0.776,
+      0.667,
+      0.519,
+      0.88,
+      0.873,
+      0.568,
+      0.469,
+      0.848,
+      0.85
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " value",
+      "2",
+      "6",
+      " W",
+      " ",
+      "7",
+      "5",
+      "8",
+      " ",
+      "7",
+      "3",
+      "5",
+      " value",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.566,
+      0.62,
+      0.829,
+      0.815,
+      0.565,
+      0.852,
+      0.865,
+      0.746,
+      0.831,
+      0.776,
+      0.88,
+      0.756,
+      0.791,
+      0.435,
+      0.849,
+      0.894
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " value",
+      "3",
+      "1",
+      " Code",
+      " has",
+      "8",
+      "0",
+      "3",
+      " value",
+      "2",
+      "5",
+      " Code",
+      " value",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.638,
+      0.565,
+      0.857,
+      0.888,
+      0.701,
+      0.588,
+      0.871,
+      0.804,
+      0.677,
+      0.613,
+      0.88,
+      0.874,
+      0.621,
+      0.462,
+      0.836,
+      0.855
+     ]
+    }
+   ]
+  },
+  "E1a_s1": {
+   "cos_mean": 0.7271135449409485,
+   "cos_p10": 0.5364491939544678,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " value",
+      "1",
+      "5",
+      " Code",
+      " value",
+      "6",
+      ".",
+      " V",
+      " value",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.562,
+      0.346,
+      0.892,
+      0.861,
+      0.729,
+      0.616,
+      0.854,
+      0.748,
+      0.642,
+      0.562,
+      0.84,
+      0.882,
+      0.696,
+      0.693,
+      0.835,
+      0.877
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " value",
+      "2",
+      "6",
+      " W",
+      " ",
+      "7",
+      "5",
+      "8",
+      " ",
+      "7",
+      ".",
+      "9",
+      "2",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.52,
+      0.348,
+      0.801,
+      0.838,
+      0.653,
+      0.787,
+      0.851,
+      0.746,
+      0.811,
+      0.669,
+      0.862,
+      0.723,
+      0.838,
+      0.63,
+      0.839,
+      0.88
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " has",
+      "3",
+      "1",
+      " Code",
+      " has",
+      "8",
+      "0",
+      "3",
+      " has",
+      "2",
+      "5",
+      "2",
+      " value",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.566,
+      0.341,
+      0.835,
+      0.857,
+      0.638,
+      0.6,
+      0.875,
+      0.764,
+      0.731,
+      0.632,
+      0.868,
+      0.87,
+      0.638,
+      0.572,
+      0.812,
+      0.874
+     ]
+    }
+   ]
+  },
+  "E1a_s2": {
+   "cos_mean": 0.7298629879951477,
+   "cos_p10": 0.5338252782821655,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "5",
+      " Code",
+      " has",
+      "2",
+      "0",
+      " V",
+      " has",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.682,
+      0.503,
+      0.903,
+      0.83,
+      0.743,
+      0.567,
+      0.853,
+      0.73,
+      0.659,
+      0.579,
+      0.824,
+      0.812,
+      0.745,
+      0.566,
+      0.812,
+      0.83
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " has",
+      "2",
+      "6",
+      " W",
+      " ",
+      "2",
+      "5",
+      "8",
+      " ",
+      "7",
+      ".",
+      "5",
+      " has",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.611,
+      0.46,
+      0.818,
+      0.879,
+      0.494,
+      0.842,
+      0.85,
+      0.719,
+      0.801,
+      0.687,
+      0.864,
+      0.735,
+      0.832,
+      0.471,
+      0.83,
+      0.857
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " has",
+      "3",
+      "1",
+      " Code",
+      " value",
+      "8",
+      "0",
+      "3",
+      " value",
+      "2",
+      "5",
+      "2",
+      " value",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.735,
+      0.494,
+      0.849,
+      0.866,
+      0.683,
+      0.61,
+      0.849,
+      0.801,
+      0.634,
+      0.637,
+      0.846,
+      0.844,
+      0.735,
+      0.544,
+      0.82,
+      0.848
+     ]
+    }
+   ]
+  },
+  "E1a_s3": {
+   "cos_mean": 0.7287031412124634,
+   "cos_p10": 0.5329949259757996,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "5",
+      " Code",
+      " ",
+      "6",
+      ".",
+      "V",
+      "B",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.557,
+      0.372,
+      0.881,
+      0.844,
+      0.803,
+      0.648,
+      0.88,
+      0.791,
+      0.761,
+      0.558,
+      0.87,
+      0.817,
+      0.717,
+      0.623,
+      0.849,
+      0.828
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "7",
+      " has",
+      "2",
+      "6",
+      " W",
+      " ",
+      "7",
+      ".",
+      "8",
+      " ",
+      "7",
+      ".",
+      "9",
+      " value",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.526,
+      0.355,
+      0.819,
+      0.862,
+      0.644,
+      0.871,
+      0.868,
+      0.718,
+      0.835,
+      0.807,
+      0.901,
+      0.76,
+      0.833,
+      0.495,
+      0.85,
+      0.853
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " value",
+      "3",
+      "1",
+      " Code",
+      " value",
+      "8",
+      "0",
+      "3",
+      " has",
+      "2",
+      "5",
+      " Code",
+      " value",
+      "9",
+      "6"
+     ],
+     "cos": [
+      0.534,
+      0.351,
+      0.831,
+      0.827,
+      0.677,
+      0.582,
+      0.885,
+      0.778,
+      0.635,
+      0.593,
+      0.872,
+      0.836,
+      0.575,
+      0.561,
+      0.798,
+      0.852
+     ]
+    }
+   ]
+  },
+  "E1a_s4": {
+   "cos_mean": 0.72745281457901,
+   "cos_p10": 0.5437768697738647,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " value",
+      "1",
+      "5",
+      " Code",
+      " ",
+      "2",
+      ".",
+      "V",
+      "B",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.546,
+      0.383,
+      0.885,
+      0.834,
+      0.701,
+      0.708,
+      0.843,
+      0.755,
+      0.704,
+      0.554,
+      0.868,
+      0.826,
+      0.686,
+      0.705,
+      0.838,
+      0.841
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " value",
+      "2",
+      "6",
+      " W",
+      " ",
+      "7",
+      "5",
+      "8",
+      " ",
+      "7",
+      "3",
+      "9",
+      "2",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.528,
+      0.366,
+      0.814,
+      0.887,
+      0.656,
+      0.831,
+      0.844,
+      0.76,
+      0.832,
+      0.692,
+      0.859,
+      0.757,
+      0.809,
+      0.656,
+      0.865,
+      0.869
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " value",
+      "3",
+      "1",
+      " Code",
+      " has",
+      "8",
+      "0",
+      "3",
+      " has",
+      "2",
+      "5",
+      "2",
+      " value",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.597,
+      0.345,
+      0.846,
+      0.867,
+      0.584,
+      0.601,
+      0.845,
+      0.804,
+      0.625,
+      0.642,
+      0.878,
+      0.862,
+      0.575,
+      0.664,
+      0.822,
+      0.873
+     ]
+    }
+   ]
+  },
+  "S2a_s0": {
+   "cos_mean": 0.7060755491256714,
+   "cos_p10": 0.5365428328514099,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "5",
+      " Code",
+      " has",
+      "2",
+      "0",
+      "V",
+      " has",
+      "7",
+      "4",
+      "2",
+      " has",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.629,
+      0.508,
+      0.85,
+      0.802,
+      0.679,
+      0.65,
+      0.816,
+      0.807,
+      0.535,
+      0.637,
+      0.815,
+      0.837,
+      0.584,
+      0.563,
+      0.805,
+      0.808
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "6",
+      " Code",
+      " has",
+      "2",
+      "5",
+      "8",
+      " has",
+      "7",
+      "3",
+      "1",
+      " has",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.572,
+      0.484,
+      0.755,
+      0.822,
+      0.584,
+      0.636,
+      0.809,
+      0.785,
+      0.76,
+      0.622,
+      0.828,
+      0.753,
+      0.708,
+      0.572,
+      0.803,
+      0.868
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " has",
+      "3",
+      "1",
+      " Code",
+      " has",
+      "8",
+      "0",
+      "3",
+      " has",
+      "2",
+      "5",
+      "2",
+      " has",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.732,
+      0.498,
+      0.792,
+      0.868,
+      0.592,
+      0.63,
+      0.818,
+      0.793,
+      0.732,
+      0.583,
+      0.84,
+      0.824,
+      0.537,
+      0.566,
+      0.774,
+      0.842
+     ]
+    }
+   ]
+  },
+  "S2a_s1": {
+   "cos_mean": 0.7216995358467102,
+   "cos_p10": 0.5626267790794373,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      " ",
+      "1",
+      " Code",
+      " value",
+      "2",
+      "1",
+      "V",
+      " has",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.675,
+      0.569,
+      0.757,
+      0.809,
+      0.526,
+      0.633,
+      0.833,
+      0.782,
+      0.553,
+      0.666,
+      0.825,
+      0.872,
+      0.72,
+      0.674,
+      0.811,
+      0.828
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " has",
+      " ",
+      "6",
+      " Code",
+      " value",
+      "2",
+      "5",
+      "8",
+      " has",
+      "7",
+      "3",
+      "5",
+      "2",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.604,
+      0.614,
+      0.703,
+      0.848,
+      0.417,
+      0.632,
+      0.829,
+      0.821,
+      0.736,
+      0.627,
+      0.843,
+      0.829,
+      0.782,
+      0.73,
+      0.819,
+      0.873
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " has",
+      " ",
+      "1",
+      " Code",
+      " value",
+      "8",
+      "0",
+      "3",
+      " value",
+      "2",
+      "5",
+      " Code",
+      " has",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.747,
+      0.633,
+      0.735,
+      0.878,
+      0.465,
+      0.605,
+      0.82,
+      0.814,
+      0.741,
+      0.679,
+      0.844,
+      0.86,
+      0.675,
+      0.592,
+      0.782,
+      0.843
+     ]
+    }
+   ]
+  },
+  "S2a_s2": {
+   "cos_mean": 0.682606041431427,
+   "cos_p10": 0.4995649755001068,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "1",
+      " Code",
+      " has",
+      "6",
+      "2",
+      " Code",
+      " has",
+      "7",
+      "6",
+      "4",
+      " value",
+      "6",
+      "8"
+     ],
+     "cos": [
+      0.632,
+      0.522,
+      0.811,
+      0.881,
+      0.642,
+      0.609,
+      0.805,
+      0.8,
+      0.48,
+      0.614,
+      0.782,
+      0.867,
+      0.582,
+      0.539,
+      0.781,
+      0.791
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "2",
+      " Code",
+      " has",
+      "1",
+      "2",
+      "5",
+      " has",
+      "7",
+      "9",
+      "3",
+      " value",
+      "3",
+      "4"
+     ],
+     "cos": [
+      0.564,
+      0.49,
+      0.747,
+      0.843,
+      0.41,
+      0.631,
+      0.798,
+      0.813,
+      0.605,
+      0.578,
+      0.817,
+      0.736,
+      0.699,
+      0.529,
+      0.811,
+      0.785
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      "2",
+      "3",
+      "5",
+      " Code",
+      " has",
+      "1",
+      "9",
+      "3",
+      " has",
+      "2",
+      "4",
+      " Code",
+      " value",
+      "1",
+      "5"
+     ],
+     "cos": [
+      0.708,
+      0.465,
+      0.791,
+      0.841,
+      0.561,
+      0.618,
+      0.75,
+      0.814,
+      0.515,
+      0.563,
+      0.821,
+      0.874,
+      0.545,
+      0.539,
+      0.754,
+      0.803
+     ]
+    }
+   ]
+  },
+  "S2a_s3": {
+   "cos_mean": 0.7045710682868958,
+   "cos_p10": 0.5296056866645813,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "5",
+      " Code",
+      " has",
+      "2",
+      "0",
+      " Code",
+      " value",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "7"
+     ],
+     "cos": [
+      0.616,
+      0.585,
+      0.818,
+      0.843,
+      0.457,
+      0.627,
+      0.816,
+      0.793,
+      0.585,
+      0.632,
+      0.836,
+      0.856,
+      0.646,
+      0.576,
+      0.816,
+      0.843
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "6",
+      " Code",
+      " value",
+      "2",
+      "5",
+      "8",
+      " value",
+      "7",
+      "3",
+      "3",
+      " has",
+      "5",
+      "3"
+     ],
+     "cos": [
+      0.545,
+      0.547,
+      0.755,
+      0.846,
+      0.357,
+      0.632,
+      0.809,
+      0.806,
+      0.768,
+      0.611,
+      0.819,
+      0.792,
+      0.715,
+      0.576,
+      0.828,
+      0.87
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " has",
+      "3",
+      "1",
+      " Code",
+      " has",
+      "8",
+      "0",
+      "3",
+      " value",
+      "2",
+      "5",
+      "2",
+      " has",
+      "5",
+      "6"
+     ],
+     "cos": [
+      0.736,
+      0.551,
+      0.801,
+      0.845,
+      0.44,
+      0.629,
+      0.79,
+      0.788,
+      0.718,
+      0.667,
+      0.842,
+      0.842,
+      0.577,
+      0.568,
+      0.807,
+      0.841
+     ]
+    }
+   ]
+  },
+  "S2a_s4": {
+   "cos_mean": 0.693649172782898,
+   "cos_p10": 0.5386934280395508,
+   "examples": [
+    {
+     "doc": "Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "5",
+      " Code",
+      " has",
+      "2",
+      "1",
+      " Code",
+      " has",
+      "7",
+      "4",
+      "2",
+      " value",
+      "6",
+      "."
+     ],
+     "cos": [
+      0.623,
+      0.545,
+      0.848,
+      0.825,
+      0.687,
+      0.621,
+      0.8,
+      0.765,
+      0.506,
+      0.652,
+      0.762,
+      0.844,
+      0.537,
+      0.675,
+      0.797,
+      0.674
+     ]
+    },
+    {
+     "doc": "Code K7DX has value 8266. Code WLEV has value 7256. Code P8FQ has value 7938. Code 95E2 has value 5835.",
+     "tokens": [
+      "Code",
+      " has",
+      "1",
+      "6",
+      "W",
+      " has",
+      "1",
+      "5",
+      "8",
+      " has",
+      "1",
+      "3",
+      "3",
+      " has",
+      "3",
+      "."
+     ],
+     "cos": [
+      0.564,
+      0.535,
+      0.753,
+      0.818,
+      0.541,
+      0.625,
+      0.78,
+      0.781,
+      0.62,
+      0.634,
+      0.755,
+      0.769,
+      0.672,
+      0.608,
+      0.798,
+      0.688
+     ]
+    },
+    {
+     "doc": "Code MB2L has value 3514. Code PBEQ has value 8909. Code X3KE has value 2458. Code TP2U has value 9567.",
+     "tokens": [
+      "Code",
+      " has",
+      "3",
+      "1",
+      " Code",
+      " has",
+      "1",
+      "0",
+      "3",
+      " value",
+      "2",
+      "5",
+      " Code",
+      " value",
+      "5",
+      "."
+     ],
+     "cos": [
+      0.742,
+      0.575,
+      0.769,
+      0.856,
+      0.628,
+      0.638,
+      0.756,
+      0.774,
+      0.593,
+      0.639,
+      0.821,
+      0.84,
+      0.624,
+      0.62,
+      0.832,
+      0.671
+     ]
+    }
+   ]
+  }
+ }
+}
