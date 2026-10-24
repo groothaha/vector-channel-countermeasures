@@ -26,7 +26,7 @@ The trained checkpoints (`.pt`) are not included because of their size; the JSON
 - Evaluations on the preexisting checkpoints: `python3 sprint/reproduce.py`, `sprint/countermeasures.py`, `sprint/monitor_probe.py` and the other scripts in `sprint/` (each has its usage in the docstring).
 - GPU training runs were launched on Modal: `modal deploy sprint/modal_app.py`, then `python3 sprint/spawn.py <group>` with the groups defined in `sprint/modal_app.py`.
 - Figures and tables: `python3 sprint/analyze.py`, `python3 sprint/analyze.py monitor`, `python3 sprint/analyze.py doclen`.
-- Adaptive-attacker evaluation (fine-tunes the deployed channel against the deployed probe/detector/snap; run on one GPU or Apple Silicon): `python3 sprint/adaptive.py --mode {evade,mimic,snap} --lam {10,1,0} --seed {0,1,2}`.
+- Adaptive-attacker evaluation (fine-tunes the deployed channel against the deployed probe/detector/snap; run on one GPU or Apple Silicon): `python3 sprint/adaptive.py --mode {evade,mimic,snap,gumbel} --lam {10,1,0} [--tau 0.5] --seed {0,1,2}`.
 
 ## Dual use
 
