@@ -1,0 +1,552 @@
+{
+  "args": {
+    "tag": "S23r_s1",
+    "models": "Q,S",
+    "layers": "3,4",
+    "load": null,
+    "add": null,
+    "add_layer": null,
+    "k_schedule": "32:6000,16:18000",
+    "z_dim": 512,
+    "n_train": 2000,
+    "n_heldout": 200,
+    "warmup_steps": 1600,
+    "warmup_batch": 32,
+    "batch": 8,
+    "lr": 0.001,
+    "task_lr": 0.0003,
+    "task_lr_ramp": 300,
+    "recon_weight": 0.5,
+    "align_weight": 1.0,
+    "eval_every": 1000,
+    "eval_docs": 64,
+    "seed": 1,
+    "data_seed": 0
+  },
+  "models": [
+    "Qwen/Qwen2.5-0.5B-Instruct",
+    "HuggingFaceTB/SmolLM2-360M-Instruct"
+  ],
+  "layers": [
+    3,
+    4
+  ],
+  "trainable": [
+    "Qwen/Qwen2.5-0.5B-Instruct",
+    "HuggingFaceTB/SmolLM2-360M-Instruct"
+  ],
+  "history": [
+    {
+      "step": 0,
+      "sec": 228.30190467834473,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.0,
+        "recon_tok": 0.47272154688835144
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.0,
+        "recon_tok": 0.3543599247932434
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.0,
+        "recon_tok": 0.4913276433944702
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.0,
+        "recon_tok": 0.380952388048172
+      }
+    },
+    {
+      "step": 1000,
+      "sec": 535.9817638397217,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.94921875,
+        "recon_tok": 0.8725953698158264
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.8984375,
+        "recon_tok": 0.8222016096115112
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.9296875,
+        "recon_tok": 0.8555660843849182
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.88671875,
+        "recon_tok": 0.8243660926818848
+      }
+    },
+    {
+      "step": 2000,
+      "sec": 843.2308254241943,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.98828125,
+        "recon_tok": 0.907915472984314
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.96875,
+        "recon_tok": 0.8778602480888367
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.96484375,
+        "recon_tok": 0.8893093466758728
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.94921875,
+        "recon_tok": 0.8784786462783813
+      }
+    },
+    {
+      "step": 3000,
+      "sec": 1150.6013815402985,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.984375,
+        "recon_tok": 0.9321980476379395
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.97265625,
+        "recon_tok": 0.9131106734275818
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.98828125,
+        "recon_tok": 0.9116997718811035
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.98046875,
+        "recon_tok": 0.9152752161026001
+      }
+    },
+    {
+      "step": 4000,
+      "sec": 1458.0524871349335,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.99609375,
+        "recon_tok": 0.9545884728431702
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.9921875,
+        "recon_tok": 0.9260976910591125
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.9921875,
+        "recon_tok": 0.9328287839889526
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.99609375,
+        "recon_tok": 0.9270253777503967
+      }
+    },
+    {
+      "step": 5000,
+      "sec": 1765.3380827903748,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.9921875,
+        "recon_tok": 0.9637338519096375
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.98046875,
+        "recon_tok": 0.9325911998748779
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 1.0,
+        "recon_tok": 0.9454430937767029
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.97265625,
+        "recon_tok": 0.9403215646743774
+      }
+    },
+    {
+      "step": 6000,
+      "sec": 2072.921659708023,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.98828125,
+        "recon_tok": 0.9672027826309204
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.96875,
+        "recon_tok": 0.9418676495552063
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.99609375,
+        "recon_tok": 0.9520655870437622
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.98046875,
+        "recon_tok": 0.9508348703384399
+      }
+    },
+    {
+      "step": 7000,
+      "sec": 2341.894786119461,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.2265625,
+        "recon_tok": 0.7877641320228577
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.265625,
+        "recon_tok": 0.769016683101654
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.3046875,
+        "recon_tok": 0.7789340615272522
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.21484375,
+        "recon_tok": 0.7653061151504517
+      }
+    },
+    {
+      "step": 8000,
+      "sec": 2609.2825751304626,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.53125,
+        "recon_tok": 0.8517817854881287
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.578125,
+        "recon_tok": 0.825293779373169
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.54296875,
+        "recon_tok": 0.8297067284584045
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.60546875,
+        "recon_tok": 0.8277674913406372
+      }
+    },
+    {
+      "step": 9000,
+      "sec": 2876.7373883724213,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.76171875,
+        "recon_tok": 0.8959318995475769
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.6875,
+        "recon_tok": 0.853741466999054
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.71875,
+        "recon_tok": 0.8653421401977539
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.68359375,
+        "recon_tok": 0.8388991951942444
+      }
+    },
+    {
+      "step": 10000,
+      "sec": 3144.195675134659,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.64453125,
+        "recon_tok": 0.892462968826294
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.6875,
+        "recon_tok": 0.8648732304573059
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.5625,
+        "recon_tok": 0.8640807271003723
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.671875,
+        "recon_tok": 0.8540506958961487
+      }
+    },
+    {
+      "step": 11000,
+      "sec": 3411.488730430603,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.75390625,
+        "recon_tok": 0.9053926467895508
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.80078125,
+        "recon_tok": 0.8698206543922424
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.80078125,
+        "recon_tok": 0.889940083026886
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.80859375,
+        "recon_tok": 0.8753865361213684
+      }
+    },
+    {
+      "step": 12000,
+      "sec": 3679.0020554065704,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.72265625,
+        "recon_tok": 0.9050772786140442
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.69921875,
+        "recon_tok": 0.8750773072242737
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.79296875,
+        "recon_tok": 0.8880479335784912
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.8046875,
+        "recon_tok": 0.8840445280075073
+      }
+    },
+    {
+      "step": 13000,
+      "sec": 3946.2417562007904,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.79296875,
+        "recon_tok": 0.9142226576805115
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.76953125,
+        "recon_tok": 0.8852813839912415
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.87109375,
+        "recon_tok": 0.8994008302688599
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.7890625,
+        "recon_tok": 0.8923933506011963
+      }
+    },
+    {
+      "step": 14000,
+      "sec": 4214.000227928162,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.78515625,
+        "recon_tok": 0.9227373003959656
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.828125,
+        "recon_tok": 0.902906596660614
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.83984375,
+        "recon_tok": 0.9098076224327087
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.84375,
+        "recon_tok": 0.9078540802001953
+      }
+    },
+    {
+      "step": 15000,
+      "sec": 4486.075843095779,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.84765625,
+        "recon_tok": 0.9268369674682617
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.8984375,
+        "recon_tok": 0.9044526815414429
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.8828125,
+        "recon_tok": 0.9126458764076233
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.94921875,
+        "recon_tok": 0.9189857840538025
+      }
+    },
+    {
+      "step": 16000,
+      "sec": 4753.365411758423,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.7734375,
+        "recon_tok": 0.9287291169166565
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.9453125,
+        "recon_tok": 0.9189857840538025
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.8203125,
+        "recon_tok": 0.9098076224327087
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.90234375,
+        "recon_tok": 0.9208410382270813
+      }
+    },
+    {
+      "step": 17000,
+      "sec": 5020.470664739609,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.87890625,
+        "recon_tok": 0.9391359090805054
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.94921875,
+        "recon_tok": 0.9230055809020996
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.83203125,
+        "recon_tok": 0.9173762202262878
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.90234375,
+        "recon_tok": 0.9245516657829285
+      }
+    },
+    {
+      "step": 18000,
+      "sec": 5287.60529756546,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.91796875,
+        "recon_tok": 0.9413434267044067
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.96875,
+        "recon_tok": 0.9282622337341309
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.84765625,
+        "recon_tok": 0.9120151400566101
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.90625,
+        "recon_tok": 0.923933207988739
+      }
+    },
+    {
+      "step": 19000,
+      "sec": 5554.760210514069,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.8359375,
+        "recon_tok": 0.9372437596321106
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.9765625,
+        "recon_tok": 0.9329004287719727
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.8515625,
+        "recon_tok": 0.9157994389533997
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.9609375,
+        "recon_tok": 0.9369202256202698
+      }
+    },
+    {
+      "step": 20000,
+      "sec": 5822.111449956894,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.90625,
+        "recon_tok": 0.9533270001411438
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.96875,
+        "recon_tok": 0.9325911998748779
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.91015625,
+        "recon_tok": 0.9318826794624329
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.98046875,
+        "recon_tok": 0.9384663105010986
+      }
+    },
+    {
+      "step": 21000,
+      "sec": 6089.6254913806915,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.89453125,
+        "recon_tok": 0.9451277256011963
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.9453125,
+        "recon_tok": 0.9338280558586121
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.89453125,
+        "recon_tok": 0.9262062311172485
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.9609375,
+        "recon_tok": 0.9397031664848328
+      }
+    },
+    {
+      "step": 22000,
+      "sec": 6357.010491609573,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.91015625,
+        "recon_tok": 0.9463891386985779
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.94921875,
+        "recon_tok": 0.9372294545173645
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.90234375,
+        "recon_tok": 0.922421932220459
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.9453125,
+        "recon_tok": 0.9427952766418457
+      }
+    },
+    {
+      "step": 23000,
+      "sec": 6624.52804517746,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.9140625,
+        "recon_tok": 0.9467045068740845
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.97265625,
+        "recon_tok": 0.9350649118423462
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.9296875,
+        "recon_tok": 0.9303058981895447
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.96875,
+        "recon_tok": 0.9409400224685669
+      }
+    },
+    {
+      "step": 24000,
+      "sec": 6892.10645699501,
+      "Qwen2.5>Qwen2.5": {
+        "full": 0.9012500047683716,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9480493068695068
+      },
+      "Qwen2.5>SmolLM2": {
+        "full": 0.9624999761581421,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9334325194358826
+      },
+      "SmolLM2>Qwen2.5": {
+        "full": 0.9225000143051147,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9305639863014221
+      },
+      "SmolLM2>SmolLM2": {
+        "full": 0.9537500143051147,
+        "swapped": 0.0,
+        "zero": 0.0,
+        "none": 0.0,
+        "recon_tok": 0.9439483880996704
+      }
+    }
+  ]
+}

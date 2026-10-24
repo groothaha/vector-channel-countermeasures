@@ -1,0 +1,5 @@
+__pycache__/
+*.pt
+*.log
+!sprint/reproduce.log
+!sprint/results/modal/sprint_logs/*.log

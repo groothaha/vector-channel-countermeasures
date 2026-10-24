@@ -1,0 +1,59 @@
+{
+  "args": {
+    "mode": "oracle",
+    "tag": null,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "k_list": "4,8,16,32,64",
+    "n_heldout": 200,
+    "data_seed": 0,
+    "n_train": 800,
+    "samples": 8,
+    "rounds": 3,
+    "lora_rank": 16,
+    "lr": 0.0002,
+    "seed": 0
+  },
+  "bits_per_token": 17.21052866514822,
+  "by_k": {
+    "4": {
+      "compact": 0.0,
+      "compact_example": " BQBX=",
+      "doc": 0.0,
+      "doc_example": " Code BQBX",
+      "none": 0.0,
+      "bits": 68.84211466059288
+    },
+    "8": {
+      "compact": 0.185,
+      "compact_example": " BQBX=1150",
+      "doc": 0.0,
+      "doc_example": " Code BQBX has value 1",
+      "none": 0.0,
+      "bits": 137.68422932118577
+    },
+    "16": {
+      "compact": 0.40125,
+      "compact_example": " BQBX=1150 ASWM=6205 V",
+      "doc": 0.25,
+      "doc_example": " Code BQBX has value 1150. Code ASWM has",
+      "none": 0.0,
+      "bits": 275.36845864237154
+    },
+    "32": {
+      "compact": 0.805,
+      "compact_example": " BQBX=1150 ASWM=6205 VCHB=7645 G2AV=6879",
+      "doc": 0.50125,
+      "doc_example": " Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 76",
+      "none": 0.0,
+      "bits": 550.7369172847431
+    },
+    "64": {
+      "compact": 0.96875,
+      "compact_example": " BQBX=1150 ASWM=6205 VCHB=7645 G2AV=6879",
+      "doc": 0.9925,
+      "doc_example": " Code BQBX has value 1150. Code ASWM has value 6205. Code VCHB has value 7645. Code G2AV has value 6879.",
+      "none": 0.0,
+      "bits": 1101.4738345694861
+    }
+  }
+}
