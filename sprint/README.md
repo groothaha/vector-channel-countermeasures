@@ -31,8 +31,9 @@ Preexisting results quoted in the report (for example "heldout accuracy 0.916 to
 | `modal_app.py`, `spawn.py`, `status.py` | Running jobs on Modal GPUs; logs and outputs go to the `model-comm` volume |
 | `analyze.py` | Figures and tables in the report, generated from the result files |
 | `stats.py` | Confidence intervals, seed-count planning, variance split and the step-500 predictor, from the same result files (no new runs) |
+| `adaptive.py` | Adaptive-attacker robustness evaluation: fine-tunes the deployed channel against the deployed monitor (`evade`, `mimic`) or through the deployed full snap (`snap`, straight-through estimator), and reports defender-side metrics for every run (frozen probe, retrained probe, snap accuracy, nearest-token cosine) |
 | `paper/` | Report source (`report.md`), references, figures, and the script that fills the official template (`build_docx.py`) |
-| `results/` | Sprint result files (`results/modal/runs/` document-length runs, `results/modal/runs_c3/` three-phase curriculum runs) |
+| `results/` | Sprint result files (`results/modal/runs/` document-length runs, `results/modal/runs_c3/` three-phase curriculum runs, `results/adaptive.json` 12 adaptive runs) |
 
 New training runs during the sprint use preexisting code with new arguments:
 - Stage 2-3 rerun (`S23r_s0..2`): shared Z, 24,000 steps (6,000 per direction, matching pair-only training; the preexisting run used 12,000)

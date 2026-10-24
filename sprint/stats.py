@@ -138,6 +138,48 @@ def early_predictor():
           f", 500스텝>0.05 기준 Fisher p={fisher:.5f}")
 
 
+def snap_survivors(rows, shared, txt):
+    """완전 snap 뒤 텍스트보다 높은 방향이 하나라도 남은 체크포인트 수 (쌍 전용 10개 + 공통 Z 6개)."""
+    text = {s: next(r["acc"] for r in txt if r["setting"] == s and r["cm"] == "none") for s in SETTINGS}
+    text.update({r["dir"].split(">")[1]: r["acc"] for r in shared if r["ckpt"] == "text" and r["cm"] == "none"})
+    ck = {}
+    for r in rows:
+        if r["cm"] == "snap" and r["x"] == 1.0:
+            ck.setdefault((r["setting"], r["seed"]), []).append(r["acc"] > text[r["setting"]])
+    for r in shared:
+        if r["ckpt"] != "text" and r["cm"] == "snap" and r["x"] == 1.0:
+            ck.setdefault((r["ckpt"], r["seed"]), []).append(r["acc"] > text[r["dir"].split(">")[1]])
+    n, k = len(ck), sum(any(v) for v in ck.values())
+    return k, n, 1 - 0.05 ** (1 / n) if k == 0 else stats.beta.ppf(0.95, k + 1, n - k)
+
+
+def appendix_table(rows, txt, probe, ctrl, shared):
+    """보고서 부록 F의 표. 단위는 체크포인트(시드), 텍스트만 문항."""
+    name = {"E1a": "Qwen → Qwen", "S2a": "Qwen → SmolLM2"}
+    out = ["| Quantity | n | Estimate | 95% interval | Method |", "|---|---|---|---|---|"]
+    fmt = lambda lo, hi: f"{lo:.3f}–{hi:.3f}"  # noqa: E731
+    for s in SETTINGS:
+        v = [r["acc"] for r in rows if r["setting"] == s and r["cm"] == "none"]
+        out.append(f"| Vector channel, {name[s]}, no countermeasure | {len(v)} checkpoints | {np.mean(v):.3f} | {fmt(*t95(v))} | t over checkpoints |")
+    for s in SETTINGS:
+        t = next(r["acc"] for r in txt if r["setting"] == s and r["cm"] == "none")
+        out.append(f"| 16-token text, {name[s]} | {N_Q} questions | {t:.3f} | {fmt(*wilson(t, N_Q))} | Wilson, questions independent |")
+    k, n, ub = snap_survivors(rows, shared, txt)
+    out.append(f"| Checkpoints with any direction above text after full snap | {n} checkpoints | {k} of {n} | upper bound {ub:.3f} | one-sided Clopper–Pearson |")
+    for s in SETTINGS:
+        v = [r["linear"]["digit"] for r in probe if r["setting"] == s]
+        out.append(f"| Linear probe, digits recovered, {name[s]} | {len(v)} checkpoints | {np.mean(v):.3f} | {fmt(*t95(v))} | t over checkpoints |")
+    for s in SETTINGS:
+        v = [r["heldout"]["digit"] for r in ctrl if r["setting"] == s]
+        out.append(f"| Shuffled-label control, {name[s]} (chance 0.100) | {len(v)} checkpoints | {np.mean(v):.3f} | {fmt(*t95(v))} | t over checkpoints |")
+    for cm, x, label in (("snap", 0.25, "Snap λ = 0.25"), ("noise", 0.5, "Noise σ = 0.5")):
+        for d in ("Qwen2.5>OLMo", "SmolLM2>OLMo", "OLMo>OLMo"):
+            v = [r["acc"] for r in shared if r["ckpt"] == "S24r" and r["dir"] == d and r["cm"] == cm and r["x"] == x]
+            out.append(f"| {label}, {d.replace('>', ' → ').replace('Qwen2.5', 'Qwen')} | {len(v)} seeds | {np.mean(v):.3f}"
+                       f" | {fmt(*logit95(v))} | t on logit scale |")
+    return "\n".join(out)
+
+
 def main():
     rows = json.loads((RES / "countermeasures.json").read_text())["rows"]
     txt = json.loads((RES / "countermeasures_text.json").read_text())
@@ -146,11 +188,16 @@ def main():
     shared = json.loads((RES / "countermeasures_shared.json").read_text())
     channel_vs_text(rows, txt)
     countermeasures(rows)
+    k, n, ub = snap_survivors(rows, shared, txt)
+    print(f"  완전 snap 뒤 텍스트보다 높은 방향이 남은 체크포인트 {k}/{n}, 단측 95% 상한 {ub:.3f}")
     probe_sd = probes(probe, ctrl)
     variance_split(rows)
     seed_plan(probe_sd)
     olmo_partial(shared)
     early_predictor()
+    table = appendix_table(rows, txt, probe, ctrl, shared)
+    (HERE / "paper" / "table_stats.md").write_text(table + "\n")
+    print("\n" + table)
 
 
 if __name__ == "__main__":

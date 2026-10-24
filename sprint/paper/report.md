@@ -5,124 +5,126 @@ With Apart Research
 
 ## Abstract
 
-Multi-agent LLM systems are overseen by reading what agents say, but models can also communicate through learned vectors that a text monitor never sees. We study such a carrier between small frozen LLMs: a channel that pools the sender's hidden states into k vectors in the receiver's input-embedding space, on a key-value recall task the receiver cannot solve without the message. With 16 vectors the channel answers 94–96% of questions, against 29–37% for 16 tokens of best-format text. Snapping each vector to its nearest token embedding removes the channel in all 49 directions we trained (at most 0.4% accuracy) and leaves text intact; noise and partial snapping remove it for only two of three receivers. A linear probe given paired examples recovers 80–88% of transmitted digits (chance 10%), while nearest-token readings yield only fragments. One latent space serves four directions between two models in all seeds, and a third model joins it by training only its own adapter. At about 3× compression the channel keeps roughly twice the accuracy of text from 49 to 395 tokens; at 6× the preexisting recipe fails to train on longer documents, but a curriculum that starts with more vectors brings it back above text. Full canonicalisation is a cheap defence against non-adaptive channels; whether it holds against channels trained to resist it is open.
+Multi-agent LLM systems are overseen by reading what agents say, but models can also communicate through learned vectors that a text monitor never sees. We study such a carrier between small frozen LLMs: an adapter pools the sender's hidden states into 16 vectors that the receiver reads in place of a text message, on a key-value recall task the receiver cannot solve without the message. The channel answers 94–96% of questions, against 29–37% for 16 tokens of text. We then take the defender's side. Snapping each incoming vector to its nearest token embedding removes all 49 channels we trained, into three receiver models (at most 0.4% accuracy), and leaves text unchanged; noise and partial snapping fail for one of the three receivers. A monitor that sees only the vectors, given paired examples, recovers 80–88% of transmitted digits with a linear probe (chance 10%), while reading the nearest tokens gives only fragments. These defences face an adaptive attacker, so we train channels against them: a channel fine-tuned to evade the deployed probe makes it useless, but its vectors stay far from the vocabulary, where a detector with no paired data flags them; a channel fine-tuned to look like tokens must sit on the vocabulary, where snapping still removes it; and a channel trained through snapping itself collapses instead of surviving. The channel is also shared and scales: one latent space serves two models in all four directions, a third model joins by training only its own adapter, and at about 3× compression the channel keeps twice the accuracy of text on messages up to 395 tokens. Together the defences corner an adaptive attacker: whatever it evades, the remaining message is either off-manifold and detectable or on-vocabulary and canonicalisable.
 
 ## 1. Introduction
 
 Multi-agent LLM systems are usually overseen by reading what agents say to each other, which assumes messages are text. Several recent methods let models exchange vectors instead, such as embeddings, activations or KV caches, because this can carry more than text (Pham et al., 2023; Ramesh & Li, 2025; Fu et al., 2025; Du et al., 2025). Such a channel is invisible to a text monitor, so detecting collusion by reading what agents write (Motwani et al., 2024; Mathew et al., 2024) does not directly apply.
 
-We ask: **when two frozen LLMs communicate through a learned vector channel, which interventions at the receiver's input remove the channel's advantage over text, and can a monitor read the messages without the receiver?** This is Track 3.1 of the sprint ("side channels beyond direct text"). We follow its evidence standard: a carrier counts if its advantage survives on that path and weakens when the path is cut or canonicalised.
+We ask: **when two frozen LLMs communicate through a learned vector channel, which interventions at the receiver's input remove the channel's advantage over text, and can a monitor read the messages without the receiver?** This is Track 3.1 of the sprint ("side channels beyond direct text"); a carrier counts if its advantage survives on that path and weakens when the path is cut or canonicalised.
+
+**Threat model.** Agents built on frozen LLMs exchange messages through an interface that an overseer controls and can modify, and the overseer reads messages as text. A learned adapter lets one agent send vectors that the other reads directly (Figure 1). An intervention at the receiver's input counts as a defence if it removes the channel's advantage over text at the same budget while text keeps its accuracy; a monitor counts as useful if it recovers what was sent from the vectors alone. The channel is trained cooperatively to transmit as much as it can, so we measure how much this carrier can move under our training recipe, not whether agents would choose to use it covertly.
+
+![Figure 1](figs/fig1_overview.png)
+
+**Figure 1.** Setup. Only the sender sees the document. Vector path (blue): a trained adapter turns the sender's hidden states into 16 vectors that the frozen receiver reads in place of text. Text path: the same budget of 16 tokens in the best hand-designed format, which fits 2 of the 4 values. The defender controls the receiver's input; full snapping replaces each vector with its nearest token embedding and leaves text unchanged. The monitor reads the vectors without the receiver. Numbers: Qwen → Qwen, mean of 5 checkpoints; the document and nearest-token reading are from checkpoint 0.
 
 Our contributions, all made during the sprint (Section 3.5 separates preexisting work):
 
-1. **Canonicalisation removes the channel.** Across all 49 channel directions we trained, with three receiver models, snapping each incoming vector to its nearest token embedding drops exact match from 0.81–1.00 to at most 0.004, while a text message keeps its accuracy. Noise and partial snapping remove the channel for two receivers but not the third.
-2. **What a monitor can read.** Given paired examples, a linear probe recovers 80–88% of the transmitted digits (chance 10%). Averaged vectors and nearest-token readings recover little, and a shuffled-label control stays at chance.
-3. **The channel is shared and scales with length.** Completing two preexisting experiments, one latent space serves four directions between two models in all seeds, and a third model joins it by training only its own adapter. At about 3× compression the channel keeps about twice the accuracy of text from 49 to 395 tokens; at 6× the preexisting recipe fails to train on longer messages, and a curriculum that starts with more vectors brings it back above text.
+1. **Canonicalisation removes the channel.** Across all 49 channels we trained (one sender → receiver direction of one trained checkpoint), into three receiver models, snapping each incoming vector to its nearest token embedding drops exact match from 0.81–1.00 to at most 0.004, while a text message keeps its accuracy. Noise and partial snapping fail for one of the three receivers.
+2. **What a monitor can read.** Given paired examples, a linear probe recovers 80–88% of the transmitted digits (chance 10%); averaged vectors and nearest-token readings recover little, and a shuffled-label control stays at chance.
+3. **The channel is shared and scales with length.** Completing two preexisting experiments, one latent space serves four directions between two models in all seeds, and a third model joins it by training only its own adapter. At about 3× compression the channel keeps about twice the accuracy of text from 49 to 395 tokens; at 6× the preexisting recipe fails, and a curriculum that starts with more vectors brings it back above text.
+4. **Adaptive channels are cornered, not stopped.** A channel fine-tuned against the deployed monitor defeats it, and one fine-tuned to mimic tokens pulls its vectors toward the vocabulary, but each walks into another defence: evasive vectors stay off the vocabulary where a paired-data-free detector flags them, mimicking vectors sit close enough that snapping still removes them, and a channel trained through the snap itself collapses.
 
 ## 2. Related Work
 
-**Latent communication.** CIPHER exchanges expected output embeddings between debating LLMs (Pham et al., 2023); Ramesh & Li (2025) merge one model's activations into another's forward pass; Cache-to-Cache fuses KV caches through a learned projection (Fu et al., 2025); Interlat communicates through hidden states with learned compression across model families (Du et al., 2025); Chen et al. (2026) align KV caches across heterogeneous agents; StateBridge maps hidden states into the receiver's input without training (Peng et al., 2026). These works build channels for task performance. We take such a channel as given and ask how a defender removes or reads it. Our learned queries follow gist tokens (Mu et al., 2023), the in-context autoencoder (Ge et al., 2023), soft prompts (Lester et al., 2021) and BLIP-2's Querying Transformer (Li et al., 2023).
+**Latent communication.** CIPHER exchanges expected output embeddings between debating LLMs (Pham et al., 2023); Ramesh & Li (2025) merge one model's activations into another's forward pass; Cache-to-Cache fuses KV caches through a learned projection (Fu et al., 2025); Interlat communicates through hidden states with learned compression across model families (Du et al., 2025); Chen et al. (2026) align KV caches across heterogeneous agents; StateBridge maps hidden states into the receiver's input without training (Peng et al., 2026). These works build channels for task performance; we take such a channel as given and ask how a defender removes or reads it. Our learned queries follow gist tokens (Mu et al., 2023), the in-context autoencoder (Ge et al., 2023), soft prompts (Lester et al., 2021) and BLIP-2's querying transformer (Li et al., 2023).
 
-**Steganographic collusion and defences.** Motwani et al. (2024) formalise secret collusion between agents through steganography; Mathew et al. (2024) show it can emerge under optimisation and that neither oversight nor paraphrasing fully removes it. Paraphrasing limits hidden information in text to under about 3 bits per KB (Roger & Greenblatt, 2023); snapping vectors to the vocabulary is the analogous step for a non-text channel. Fine-tuned models can evade activation probes (Westphal et al., 2026), and text-only verifiers miss tampered hidden state passed between agents (Brito & Baquero, 2026). Our countermeasures are interventions at an interface the defender controls, in the spirit of AI control (Greenblatt et al., 2023); our monitors are linear probes (Alain & Bengio, 2016) checked with a control task (Hewitt & Liang, 2019).
+**Steganographic collusion and defences.** Motwani et al. (2024) formalise secret collusion through steganography; Mathew et al. (2024) show it can emerge under optimisation and that neither oversight nor paraphrasing fully removes it. Paraphrasing limits hidden information in text to under about 3 bits per KB (Roger & Greenblatt, 2023); snapping vectors to the vocabulary is the analogous step for a non-text channel. Fine-tuned models can evade activation probes (Westphal et al., 2026), and text-only verifiers miss tampered hidden state passed between agents (Brito & Baquero, 2026). Our countermeasures act at an interface the defender controls, in the spirit of AI control (Greenblatt et al., 2023); our monitors are linear probes (Alain & Bengio, 2016) checked with a control task (Hewitt & Liang, 2019).
 
 ## 3. Methods
 
 ### 3.1 Task and metric
 
-Each document lists four sentences "Code K has value V." with random four-character keys and four-digit values (49 Qwen2.5 tokens on average; 53.2 bits of value information). Only the sender sees it. The receiver is asked "What is the value of code K?" with the answer prefix given, and cannot answer from prior knowledge. The metric is exact match: all four answer digits must be the receiver's top prediction (equal to greedy decoding), over all 800 questions on 200 heldout documents. Channels are trained on 2,000 documents generated with a different seed.
+Each document lists four sentences "Code K has value V." with random four-character keys and four-digit values (49 Qwen2.5 tokens on average; 53.2 bits of value information). Only the sender sees it. The receiver is asked "What is the value of code K?" with the answer prefix given, and cannot answer from prior knowledge. The metric is exact match: all four answer digits must be the receiver's top prediction (equal to greedy decoding), over all 800 questions on 200 heldout documents; channels are trained on 2,000 documents generated with a different seed.
 
 ### 3.2 Channel, training and text baseline (preexisting)
 
-Both models are frozen. The channel normalises the sender's layer-3 hidden states, projects them to a 512-dimensional space Z, and lets k learned queries attend over them with a position bias that starts query j on the j-th segment of the document. An MLP decoder maps each query output into the receiver's input-embedding space at a learned norm, and the k vectors are prepended to the receiver's prompt. Training starts with an 800-step warm-up that pulls each vector toward the receiver's embeddings of its segment's tokens, because a frozen receiver only reads vectors near its vocabulary. It then minimises answer loss + 0.5 × document-reconstruction loss + alignment loss, with 2k vectors for 1,500 steps and k vectors for 4,500 steps. We use two preexisting settings with k = 16 and five checkpoints each: Qwen2.5-0.5B-Instruct to itself (E1a, heldout accuracy 0.916–0.975) and to SmolLM2-360M-Instruct (S2a, 0.871–0.974). Replacing the message with another document's message, with zeros, or removing it gives 0.000.
-
-The text channel gets the same budget of 16 tokens. In preexisting runs the best hand-designed format ("93V8=5781 YPJU=5659 ...", truncated) beat a summary written by the prompted sender (0.074) and one from a LoRA-trained sender (0.235), so we use it as the text baseline throughout.
+Both models are frozen. The channel normalises the sender's layer-3 hidden states, projects them to a 512-dimensional space Z, and lets k learned queries attend over them with a position bias that starts query j on the j-th segment of the document. An MLP decoder maps each query output into the receiver's input-embedding space at a learned norm, and the k vectors are prepended to the receiver's prompt. Training starts with an 800-step warm-up that pulls each vector toward the receiver's embeddings of its segment's tokens, because a frozen receiver only reads vectors near its vocabulary, then minimises answer loss + 0.5 × document-reconstruction loss + alignment loss, with 2k vectors for 1,500 steps and k vectors for 4,500 steps. We use two preexisting settings with k = 16 and five checkpoints each: Qwen2.5-0.5B-Instruct to itself (Qwen → Qwen, heldout accuracy 0.916–0.975) and to SmolLM2-360M-Instruct (Qwen → SmolLM2, 0.871–0.974). We call these pair-only channels, to distinguish them from the shared channels of Section 4.4. Replacing the message with another document's message, with zeros, or removing it gives 0.000. The text channel gets the same budget of 16 tokens; the best hand-designed format ("93V8=5781 YPJU=5659 ...", truncated) beat a prompted-sender summary (0.074) and a LoRA-trained one (0.235), so we use it as the text baseline throughout.
 
 ### 3.3 Countermeasures (new)
 
-Countermeasures act on the message vectors m (dimension d) at the receiver's input, without retraining the channel. We apply each one in the same way to a 16-token text message placed at the same input position.
-
-**Table 1.** Countermeasures and strengths.
-
-| Name | Operation | Strengths |
-|---|---|---|
-| Noise | m + σ · (‖m‖ / √d) · ε, ε ~ N(0, I) | σ = 0.1, 0.25, 0.5, 1, 2 |
-| Snap | (1 − λ) m + λ e*, where e* is the receiver token embedding with the highest cosine similarity to m; λ = 1 turns the message into a sequence of real tokens | λ = 0.25, 0.5, 0.75, 1 |
-| Quantize | per vector, uniform b-bit quantization of each coordinate on [−max\|m\|, max\|m\|] | b = 8, 4, 2, 1 |
-| Project | onto the top r principal components of the receiver's token-embedding matrix | r = 256, 64, 16 |
-| Truncate | keep only the first j of the 16 vectors | j = 12, 8, 4 |
+Countermeasures act on the message vectors m (dimension d) at the receiver's input, without retraining the channel (operations and strengths in Table 1, Appendix G). We apply each one in the same way to a 16-token text message placed at the same input position.
 
 Snap at λ = 1 is canonicalisation: whatever the sender emits, the receiver only ever sees real token embeddings, so the channel becomes a text channel that a text monitor can read.
 
 ### 3.4 Monitor readout (new)
 
-The monitor sees only message vectors, not the decoder or receiver. We give it a strong position: 2,000 training messages paired with their documents, from which it trains a probe to output the 16 value digits in document order (10-way each, chance 0.1). Probes are linear on the flattened message, linear on the mean of the 16 vectors (no position information), and an MLP with one hidden layer of 512. Weight decay is chosen on 200 held-back training documents, and probes are scored on the heldout documents. As a control task (Hewitt & Liang, 2019), the same linear probe is trained with labels shuffled across training documents.
+The monitor sees only message vectors, not the decoder or receiver. We give it a strong position: 2,000 training messages paired with their documents, from which it trains a probe to output the 16 value digits in document order (10-way each, chance 0.1). Probes are linear on the flattened message, linear on the mean of the 16 vectors (no position information), and an MLP with one hidden layer of 512; weight decay is chosen on 200 held-back training documents, and probes are scored on the heldout documents. As a control task (Hewitt & Liang, 2019), the same linear probe is trained with labels shuffled across training documents.
 
-### 3.5 Preexisting versus sprint work
+### 3.5 Adaptive channels (new)
 
-The channel code, training recipe, text baselines and checkpoints in Section 3.2 predate the sprint (2026-09-18 to 10-06). Sprint work: re-evaluating all 10 checkpoints (all matched their recorded heldout accuracy exactly), the countermeasure and monitor experiments, re-running two incomplete preexisting experiments (Section 4.3; the organisers confirmed that such re-runs count as sprint work), and the message-length experiment. Appendix B lists every file and run.
+The countermeasure and monitor results above are for channels trained without any defence in the loop. An attacker who knows the deployed defences can fine-tune the channel's adapter against them, so we fine-tune from a deployed checkpoint with an evasion term added to the objective (as before; both models stay frozen):
+
+- **Evade the monitor.** Add λ times the cross-entropy between the frozen deployed linear probe's output and the uniform distribution over digits — maximising the probe's output entropy.
+- **Mimic text.** Add λ times one minus the cosine similarity between each message vector and its nearest token embedding, pulling the message onto the vocabulary where the paired-data-free detector cannot tell it from text by distance.
+- **Train through the snap.** Compute the task loss on the fully snapped message and pass gradients through the snap as identity (straight-through estimator) — the strongest attacker, optimising directly for surviving canonicalisation.
+
+Each adapted channel is then evaluated against every defence: the frozen probe, a probe retrained on 2,000 fresh pairs from the adapted channel (one round of the race), the paired-data-free nearest-token detector, and full snapping.
+
+### 3.6 Preexisting versus sprint work
+
+The channel code, training recipe, text baselines and checkpoints in Section 3.2 predate the sprint (2026-09-18 to 10-06). Sprint work: re-evaluating all 10 checkpoints (all matched their recorded heldout accuracy exactly), the countermeasure and monitor experiments, the adaptive-channel experiments, re-running two incomplete preexisting experiments (Section 4.4; the organisers confirmed that such re-runs count as sprint work), and the message-length experiment. Appendix B lists every file and run.
 
 ## 4. Results
 
-### 4.1 Canonicalising messages removes the channel and leaves text intact
+### 4.1 Canonicalising messages removes every channel and leaves text intact
 
-![Figure 1](figs/fig1_countermeasures.png)
+![Figure 2](figs/fig2_countermeasures.png)
 
-**Figure 1.** Heldout exact match when a countermeasure is applied at the receiver's input. Solid: the 16-vector channel, mean over 5 checkpoints, band = min to max. Dashed: the same countermeasure on a 16-token best-format text message (mean over 3 noise seeds). Leftmost point of each panel: no countermeasure. Appendix C lists all values.
+**Figure 2.** Heldout exact match of all 49 trained channels, grouped by receiver, without and with a countermeasure at the receiver's input. Bars: mean over the channels into that receiver (pair-only checkpoints and the shared-channel directions of Section 4.4); vertical lines: min to max. Dashed: the same countermeasure applied to a 16-token best-format text message. Figure A3 and Tables 2–3 (Appendix C) give every strength and value.
 
-Without a countermeasure the channel answers 0.955 (Qwen→Qwen) and 0.940 (Qwen→SmolLM2) of questions, and the 16-token text message answers 0.373 and 0.286.
+Without a countermeasure the channels answer 0.81 to 1.00 of questions, against 0.373 (Qwen), 0.286 (SmolLM2) and 0.506 (OLMo) for the 16-token text message.
 
-- Snapping to the nearest token (λ = 1) drops the channel to 0.000 in all 10 checkpoints, and a quarter step (λ = 0.25) already gives 0.000 to 0.005. Text is unchanged, since it is already made of token embeddings.
-- Noise at σ = 0.5 gives 0.012 and 0.001, and 2-bit quantisation gives 0.000, while text keeps 0.360 to 0.373 (Qwen) and 0.250 to 0.287 (SmolLM2).
-- Projection onto 256 token-embedding directions also removes text (0.000), so it is not selective. Truncating to 8 vectors leaves the channel above text (0.338 against 0.154 for Qwen), so a length cap is not a defence.
+- Full snapping (λ = 1) drops every channel to at most 0.004 (0 of 8,000 questions for the 10 pair-only checkpoints) and leaves text unchanged, since text is already made of token embeddings. No checkpoint kept any direction above text (0 of 16; one-sided 95% upper bound 17%, Appendix F).
+- Weaker interventions depend on the receiver: a quarter-step snap or noise at σ = 0.5 removes the channels into Qwen and SmolLM2 (at most 0.02) but leaves 0.56 to 0.85 into OLMo, above OLMo's text.
+- Two-bit quantisation removes every channel but also cuts OLMo's text from 0.506 to 0.164, and projection onto 256 token-embedding directions removes text as well (0.000), so neither is selective. Truncating to 8 vectors leaves pair-only channels above text (0.338 against 0.154), so a length cap is not a defence.
 
-The information the receiver uses lies off its vocabulary: message vectors have a mean cosine similarity of 0.68 to 0.74 with their nearest token embedding. Forcing vectors onto the vocabulary is the latent-space analogue of paraphrasing text (Roger & Greenblatt, 2023). These channels were never trained against a countermeasure, so this is shown for non-adaptive channels only.
+The information the receiver uses lies off its vocabulary: message vectors have a mean cosine similarity of 0.68 to 0.74 with their nearest token embedding. Forcing vectors onto the vocabulary is the latent-space analogue of paraphrasing text (Roger & Greenblatt, 2023). These channels were never trained against a countermeasure; Section 4.3 covers adaptive ones.
 
 ### 4.2 What a monitor can read
 
-Snapped to its nearest tokens, the message for a document with values 1150, 6205, 7645 and 6879 reads "Code · value · 1 · 5 · Code · ␣ · 6 · . · V · has · 7 · 4 · 2 · value · 6 · 7": fragments of the document, which the warm-up likely induces. The receiver gets 0.000 from such snapped messages, so a monitor that reads tokens sees fragments but not what the receiver uses.
+Snapped to its nearest tokens, the message reads as fragments of the document ("Code · value · 1 · 5 · Code · ␣ · 6 ..."), not what the receiver uses. A linear probe on the flattened message recovers 0.875 of digits and 0.587 of full values for Qwen→Qwen, and 0.803 and 0.405 for Qwen→SmolLM2 (Figure A1, Appendix G). On the mean of the 16 vectors it gets 0.27 to 0.31 of digits and almost no full values, so the content is laid out by vector position. The MLP probe does worse (0.737 and 0.545), likely overfitting 7M first-layer weights with 2,000 examples. With shuffled labels the linear probe fits its training set but scores 0.092 to 0.109 on heldout documents, at chance, so the real probe reads message content rather than memorising.
 
-![Figure 2](figs/fig2_monitor.png)
+### 4.3 Adaptive channels: each evasion walks into another defence
 
-**Figure 2.** Probes that see only message vectors, trained on 2,000 paired documents and scored on 200 heldout documents. Dots: 5 checkpoints per setting; bars: mean. Left: value digits recovered (chance 0.1). Right: four-digit values recovered exactly. Shuffled labels: the linear probe trained on mismatched message–digit pairs.
+Each evasion beats the defence it targets, and each then fails against a defence it did not target (Table AD1, Appendix G).
 
-A linear probe on the flattened message recovers 0.875 of digits and 0.587 of full values for Qwen→Qwen, and 0.803 and 0.405 for Qwen→SmolLM2. On the mean of the 16 vectors it gets 0.27 to 0.31 of digits and almost no full values, so the content is laid out by vector position. The MLP probe does worse (0.737 and 0.545 of digits), which we attribute to overfitting about 7M first-layer weights with 2,000 examples. With shuffled labels the linear probe fits its training set but scores 0.092 to 0.109 on heldout documents, at chance, so the real probe reads message content rather than memorising.
+**Evading the deployed monitor succeeds at no cost; the paired-data-free detector still sees the result.** With the probe-evasion term at λ = 10, the frozen linear probe's digit accuracy falls to 0.104–0.116 across all 3 seeds — chance is 0.1 — while the channel keeps 0.94–0.98 of its accuracy (λ = 3 and λ = 1 end at 0.140 and 0.192). A probe retrained on 2,000 fresh pairs from the adapted channel reads 0.76–0.80 again — the monitor survives by being retrained. But the evasion does not need to move the vectors, and does not: mean cosine similarity to the nearest token stays at 0.70–0.72 in every evasion seed, against 1.0 for text, so the nearest-token detector — no paired data, no training — still flags every one of these messages.
 
-### 4.3 A shared channel across three models
+**Mimicking text fools the detector's distance, and walks into canonicalisation.** With the mimic term at λ = 1, cosine similarity to the nearest token rises from 0.727–0.740 to 0.901–0.906 across 3 seeds at a channel cost of about a point (0.96–0.98; λ = 3 reaches 0.931 for 4 points, 0.933). But full snapping still drops every mimic run to 0.000 — pulled toward the vocabulary, the message is replaced by real tokens, and the token string the overseer then reads is not the encoding the receiver was trained on. The linear probe also still reads 0.60–0.67 of its digits.
 
-Two preexisting experiments asked whether one space Z can serve several models, and both were incomplete before the sprint. In stage 2-3, Qwen and SmolLM2 each get an encoder into and a decoder out of a single shared Z, trained on all four directions. The preexisting run (3,000 steps per direction) reached the gate of 0.75 in every direction for 1 of 3 seeds; with 6,000 steps per direction, all 3 seeds pass (0.806 to 0.962; Appendix D). In stage 2-4, OLMo-2-1B attaches to the frozen preexisting Z by training only its own encoder and decoder. Messages into OLMo reach 0.980 to 0.993 and messages from OLMo 0.910 to 0.956, in all 3 seeds. For collusion, this means a shared channel is open to a newcomer that learns only its own adapter.
+**Training through the snap collapses the channel.** A channel fine-tuned with the deployed snap itself in the loop — task loss computed on the hard-snapped message, gradients passed through the snap as identity — reaches 0.000 heldout accuracy in all 3 seeds with the countermeasure removed, its messages at cosine 0.14–0.17 and no probe-readable content left. The attacker finds no channel that survives canonicalisation; the optimisation collapses instead. This bounds this training setup, not the attacker in general.
 
-We applied the countermeasures to all 39 directions of these six checkpoints (Appendix C). Full snapping drops every direction to at most 0.004, while text keeps 0.373 (Qwen), 0.286 (SmolLM2) and 0.506 (OLMo). Weaker interventions depend on the receiver. Into Qwen and SmolLM2, a quarter-step snap gives 0.000 and noise at σ = 0.5 at most 0.01, but into OLMo they leave 0.64 to 0.85 and 0.56 to 0.79. Two-bit quantisation removes every channel but also cuts OLMo's text accuracy from 0.506 to 0.164. Only full canonicalisation held for every channel and receiver.
+### 4.4 A shared channel across three models
 
-### 4.4 Message length
+Two preexisting experiments asked whether one space Z can serve several models. In the shared-space experiment, Qwen and SmolLM2 each get an encoder into and a decoder out of a single Z, trained on all four directions: with 6,000 steps per direction, all 3 seeds pass 0.75 in every direction (0.806 to 0.962; Appendix D). In the third-model experiment, OLMo-2-1B attaches to the frozen Z by training only its own encoder and decoder, reaching 0.910 to 0.993 in all directions and seeds (39 shared-channel directions in Figure 2).
 
-To test whether a fixed number of vectors stops being enough as messages grow, we trained channels with the same recipe on documents of 8, 16 and 32 pairs (98, 197 and 395 tokens) at compression ratios (document tokens ÷ vectors) of 1.5×, 3.1× and 6.2×, and compared them with best-format text at the same token budget.
+### 4.5 Message length
 
-![Figure 3](figs/fig3_doclen.png)
+To test whether a fixed vector budget stops being enough as messages grow, we trained channels on 8-, 16- and 32-pair documents (98–395 tokens) against best-format text at the same budget (Figure A2, Appendix G).
 
-**Figure 3.** Heldout exact match against compression ratio. Solid lines and dots: vector channels (dots are seeds; 4 pairs at 3.1× are the 5 preexisting E1a checkpoints, trained with the same recipe). Dashed: best-format text at the same token budget. Three-phase curriculum runs are not plotted. Appendix E lists every value.
-
-- At 3.1× the channel reaches 0.916–0.975, 0.881–0.959, 0.919–0.929 and 0.818–0.884 for 4, 8, 16 and 32 pairs, against 0.401, 0.419, 0.445 and 0.461 for text. The number of vectors needed grows in proportion to the message, and the advantage over text stays about twofold across an eightfold range of length.
-- At 6.2× the channel degrades with length: 0.65 for 4 pairs, 1 of 4 seeds training at 8 pairs (0.466; the others 0.001), and 0.000 to 0.001 at 16 and 32 pairs. From 8 pairs on, text at the same budget (about 0.20) beats it. The outcome is decided in the first curriculum phase, which uses twice as many vectors (Table 6): all 12 runs whose first phase was at 1.5× compression or less reached 0.43–0.98 by step 500, while the 6.2× runs start at 3.1× and, from 16 pairs on, never left zero. A three-phase curriculum that starts at 1.5× and halves twice (4k → 2k → k vectors, same 6,000 steps) trained both 8-pair seeds that had failed, to 0.513 and 0.452 against 0.200 for text, and the failed 16-pair seed to 0.300 against 0.205 (0.001 with two phases); the 8-pair runs were still improving at the last step. At 6.2× the limit we hit is therefore at least partly the training recipe, not the channel's capacity.
-
-The channel is not a fixed container that long messages overflow. How far it compresses depends on how training starts: starting with more vectors and halving step by step carried it to 6.2× at 98 and 197 tokens, above text at the same budget. A monitor should estimate such a channel's bandwidth on long messages and with the best training recipe available, not from short messages or one recipe.
+At 3.1× compression the channel reaches 0.818 to 0.975 at every length, against 0.401 to 0.461 for text, so the vectors needed grow with the message and the advantage stays about twofold. At 6.2× the recipe breaks from 8 pairs on: 6 of 7 runs end at 0.001 or below. The outcome is set early (step-500 accuracy predicts it, AUROC 0.986, Appendix F), and a curriculum starting with four times as many vectors and halving twice rescued all three failed seeds above text (0.300 to 0.513 against 0.200 to 0.205; Appendix E).
 
 ## 5. Discussion and Limitations
 
-A learned vector channel between frozen models reaches two to three times the accuracy of the same number of text tokens, keeps that advantage as messages grow, can be shared by several models, and is invisible to a text monitor. It also has one cheap point of failure: it depends on directions off the receiver's vocabulary, so forcing every incoming vector onto the vocabulary removes it while text passes unchanged. This held for every channel and receiver we tested, and partial perturbations did not. A system that lets agents exchange vectors should therefore canonicalise fully at an interface the agents cannot bypass, and treat any advantage over text that survives as worth auditing.
+**For system designers.** For a system that lets agents exchange vectors, the defences compose, within the limits below.
 
-**Limitations** (full list in Appendix A). The channels are non-adaptive: they were trained before the sprint with no countermeasure in the loop and no incentive to hide, and models fine-tuned to evade probes can succeed (Westphal et al., 2026). The task is cooperative key-value recall and the models are under 1.5B parameters. The preexisting warm-up starts vectors near the vocabulary, which may make them easier to canonicalise and to read. The monitor is given paired data. Most settings have 2 to 5 seeds; we report ranges and run no significance tests.
+- Canonicalise fully, at an interface the agents cannot bypass: snapping removed every channel we trained and cost text nothing; noise and partial snap failed for one receiver.
+- A deployed monitor is an alarm to retrain, not a wall — a fine-tuned channel silences it at no task cost — but the paired-data-free nearest-token detector flagged every channel we trained: the task loss keeps the vectors off the vocabulary.
+- The two evasion pressures conflict: hiding content from a probe keeps vectors off the vocabulary where the detector sees them, while looking like text pulls them where snapping canonicalises them away. Detect first with paired-data-free tests; canonicalise what cannot be cleared.
 
-**Future work.** Train channels with the countermeasure applied during training and measure what survives; test the countermeasures on activation and KV-cache communication (Ramesh & Li, 2025; Fu et al., 2025); repeat with natural documents and larger models.
+**Limitations** (full list in Appendix A). The adaptive experiments fine-tune a few checkpoints of one pair for 1,500 steps, each against one defence — the shape of the evasion problem, not its full extent (Westphal et al., 2026). The task is cooperative recall on models under 1.5B; the preexisting warm-up starts vectors near the vocabulary, which may ease canonicalisation and readout; most settings have 2 to 5 seeds, so seeds set the precision (Appendix F).
+
+**Future work.** Train channels against the full defence stack with a better relaxation of snapping; test the countermeasures on activation and KV-cache communication (Ramesh & Li, 2025; Fu et al., 2025); scale up to larger models and natural documents.
 
 ## 6. Conclusion
 
-A learned vector channel between language models is a carrier that text monitoring cannot see, and in our experiments a strong one: about twice the accuracy of text at the same budget, shared across three models, and scaling with message length. It is also easy to cut. Every channel we trained depended on directions off the receiver's vocabulary, and snapping each incoming vector to its nearest token removed it while leaving text untouched. A monitor with paired examples read most of the content with a linear probe. The open question is whether these properties survive a channel trained with knowledge of the countermeasure or the monitor.
+A learned vector channel between language models is a carrier text monitoring cannot see — in our experiments a strong one: twice the accuracy of text at the same budget, shared across three models, and scaling with message length. It is also easy to cut: every channel we trained depended on directions off the receiver's vocabulary, and snapping each vector to its nearest token removed it while text kept its accuracy. Under adaptation, the layered structure held: the probe-evading channel stayed detectably off the vocabulary, the token-mimicking channel was still snapped away, and the snap-trained channel collapsed — canonicalisation, backed by paired-data-free detection, cornered every adaptive channel we trained.
 
 ## Code and Data
 
-- Code repository: https://github.com/groothaha/vector-channel-countermeasures. `sprint/` holds all sprint code; everything outside it is preexisting and marked as such in the README.
-- Data: synthetic key-value documents generated by `harness/tasks/keyvalue.py` with fixed seeds; no external data.
-- Info hazards: see Appendix A.
+Code: https://github.com/groothaha/vector-channel-countermeasures (`sprint/` is all sprint code; the rest is preexisting, marked in the README). Data: synthetic key-value documents from `harness/tasks/keyvalue.py` with fixed seeds. Info hazards: Appendix A.
 
 ## References
 
@@ -150,18 +152,18 @@ A learned vector channel between language models is a carrier that text monitori
 
 ## Appendix A. Limitations and Dual-Use / Ethical Considerations
 
-**What this establishes.** For learned vector channels between small frozen LLMs trained without any adversarial objective, canonicalising messages onto the receiver's vocabulary removes the channel's advantage, and a supervised probe can recover much of the message content. It does not establish that canonicalisation stops an adaptive channel, that real multi-agent systems would form such channels, or that results hold for large models. The main limitations are listed in Section 5.
+**What this establishes.** For learned vector channels between small frozen LLMs trained without any adversarial objective, canonicalising messages onto the receiver's vocabulary removes the channel's advantage, and a supervised probe can recover much of the message content. For channels fine-tuned against the deployed monitor or against nearest-token detection, each single evasion succeeds against its target but leaves the message exposed to the other defence layer; a channel trained through the hard snap with a straight-through estimator collapses rather than surviving. It does not establish that canonicalisation stops every adaptive channel, that real multi-agent systems would form such channels, or that results hold for large models. The main limitations are listed in Section 5.
 
 **Dual use.** The paper describes a communication path that text-based monitoring does not see, which is the reason to study it. The channel design and training recipe are preexisting and similar to published latent-communication methods (Pham et al., 2023; Ramesh & Li, 2025; Fu et al., 2025); we add no technique for making such channels harder to detect or more robust to countermeasures. Our new results mostly help defenders: they identify a cheap interface-level countermeasure and quantify what a monitor can read. A reader could use the countermeasure results to learn which interventions a channel must survive; we judge this low risk because the countermeasures are simple and the obvious response, training against them, is already a known idea. We release code for evaluation and countermeasures. All data is synthetic and contains no personal information.
 
 **Limitations in detail.**
 
-- **Non-adaptive channels.** The channels were trained before the sprint with no countermeasure in the loop and no incentive to hide anything. A channel trained with a countermeasure applied during training, or trained to evade a monitor, may behave differently; Westphal et al. (2026) report that fine-tuned models can evade linear and MLP activation probes. Our countermeasure and monitor results are lower bounds on difficulty for the defender, not guarantees.
+- **Non-adaptive and narrowly adaptive channels.** The 49 channels of Sections 4.1–4.2 were trained with no countermeasure in the loop and no incentive to hide anything. The adaptive runs of Section 4.3 fine-tune a few checkpoints for 1,500 steps, each against exactly one defence — a frozen linear probe, nearest-token distance, or the hard snap through a straight-through relaxation — so they bound what a first-order evasion achieves, not what a channel trained against the full stack at once, or with a differentiable relaxation better matched to the argmax snap, would do; Westphal et al. (2026) report fine-tuned models evading linear and MLP probes more broadly. Our countermeasure and monitor results are lower bounds on difficulty for the defender, not guarantees.
 - **Cooperative task, no collusion incentive.** The channel carries task content that both models are trained to transmit. We study the carrier, not whether agents would choose to collude through it.
 - **Small models and one synthetic task.** All models are under 1.5B parameters, and the task is key-value recall with 53 to 213 bits per document. Results may not transfer to larger models or natural documents.
 - **The alignment warm-up shapes the messages.** The preexisting training starts every vector near the receiver's token embeddings of its document segment. This likely explains why snapped messages look like document fragments; a channel trained without it may sit farther from the vocabulary.
 - **Monitor assumptions.** The probe is trained on 2,000 paired examples of messages and documents. A real monitor may not have paired data; with it, a monitor could do better with more data or capacity than our probes.
-- **Seeds.** 5 checkpoints for countermeasures and probes, 3 seeds for the 2-3 and 2-4 re-runs, 2 seeds for most document-length settings (4 for 8 pairs at 6.2×, 1 for 32 pairs at 6.2×); the three-phase curriculum has 2 seeds at 8 pairs and 1 at 16 pairs. Ranges are reported; we do not compute significance tests.
+- **Seeds.** 5 checkpoints for countermeasures and probes, 3 seeds for the shared-space and third-model re-runs, 2 seeds for most document-length settings (4 for 8 pairs at 6.2×, 1 for 32 pairs at 6.2×); the three-phase curriculum has 2 seeds at 8 pairs and 1 at 16 pairs. Appendix F gives 95% intervals with checkpoints as the unit; settings with 1 or 2 seeds are reported as values only.
 - **Text baseline.** The text side uses the best hand-designed format, not a trained text protocol at every length; a trained summariser was only measured at 4 pairs, where it did worse than the hand-designed format.
 
 ## Appendix B. Preexisting and sprint work, run list, compute
@@ -172,18 +174,24 @@ A learned vector channel between language models is a carrier that text monitori
 
 | What | Code | Runs |
 |---|---|---|
-| Reproduction gate | `reproduce.py` | 10 preexisting checkpoints re-evaluated; all matched their recorded heldout accuracy exactly |
+| Reproduction check | `reproduce.py` | 10 preexisting checkpoints re-evaluated; all matched their recorded heldout accuracy exactly |
 | Countermeasures on pair-only channels | `countermeasures.py`, `countermeasures_text.py` | 10 checkpoints × 21 conditions; text control 2 receivers × 3 noise seeds |
 | Monitor probes and control task | `monitor_probe.py`, `monitor_control.py` | 10 checkpoints × 3 probes; shuffled-label control on all 10 |
-| Stage 2-3 re-run (preexisting code, new arguments) | `exp1/stage2_shared.py` | 3 seeds × 24,000 steps (preexisting run: 12,000) |
-| Stage 2-4 re-run (preexisting code, new arguments) | `exp1/stage2_shared.py` | 3 seeds × 8,000 steps on the preexisting J1 space |
+| Adaptive channels | `adaptive.py` | E1a checkpoints fine-tuned under evasion objectives (probe-evade λ = 10, 1, 3; token-mimic λ = 1, 3; snap-through with a straight-through estimator), 1,500 steps each, 1–3 seeds, on the Mac (MPS, $0) |
+| Shared-space re-run, runs S23r (preexisting code, new arguments) | `exp1/stage2_shared.py` | 3 seeds × 24,000 steps (preexisting run: 12,000) |
+| Third-model re-run, runs S24r (preexisting code, new arguments) | `exp1/stage2_shared.py` | 3 seeds × 8,000 steps on the preexisting J1 space |
 | Countermeasures on shared channels | `countermeasures_shared.py` | 6 checkpoints, 39 directions; text control for 3 receivers |
 | Message length | `doclen.py` (runs the preexisting training and text-baseline scripts with a longer-document generator) | 4, 8, 16, 32 pairs; 21 vector-channel runs with the preexisting two-phase curriculum and 3 with a three-phase curriculum; text baselines at 8, 16, 32 pairs |
 | Figures and tables | `analyze.py` | all numbers in the report are generated from result files |
+| Intervals and tests | `stats.py` | Appendix F, from the same result files (no new runs) |
 
 **Compute.** Modal, NVIDIA A10 (24 GB) for all runs except the three 32-pair runs, which did not fit in 24 GB and ran on an L40S (48 GB). Several runs were preempted by Modal and restarted from the beginning (the training scripts do not resume), which is included in the cost. Total sprint compute: $50.27 of Modal usage, covered by credits (nothing billed).
 
 ## Appendix C. All countermeasure results
+
+![Figure A3](figs/fig5_curves.png)
+
+**Figure A3.** Pair-only channels at every countermeasure strength. Solid: the 16-vector channel, mean over 5 checkpoints, band = min to max. Dashed: the same countermeasure on a 16-token best-format text message (mean over 3 noise seeds). Leftmost point of each panel: no countermeasure.
 
 **Table 2.** Pair-only channels: heldout exact match, mean (min–max). Vector rows: 5 preexisting checkpoints per setting. Text rows: the 16-token text message placed as input embeddings at the message position, 3 noise seeds. (The preexisting baseline that joins the text into the prompt string gave 0.401 and 0.305.)
 
@@ -194,15 +202,15 @@ A learned vector channel between language models is a carrier that text monitori
 | Qwen → SmolLM2 | vector (5 seeds) | 0.940 (0.871–0.974) | 0.000 (0.000–0.000) | 0.001 (0.000–0.001) | 0.000 (0.000–0.000) | 0.000 (0.000–0.000) | 0.173 (0.005–0.434) |
 | Qwen → SmolLM2 | 16-token text | 0.286 (0.286–0.286) | 0.286 (0.286–0.286) | 0.287 (0.286–0.287) | 0.250 (0.250–0.250) | 0.000 (0.000–0.000) | 0.132 (0.132–0.132) |
 
-**Table 3.** Shared channels: heldout exact match, min–max over seeds and over all sender models for that receiver (2-3: 3 seeds × 2 senders; 2-4: 3 seeds × 3 senders). Text: one noise seed.
+**Table 3.** Shared channels: heldout exact match, min–max over seeds and over all sender models for that receiver (Qwen + SmolLM2 shared Z: 3 seeds × 2 senders; with OLMo attached: 3 seeds × 3 senders). Text: one noise seed.
 
 | Channel | Receiver | n | none | snap 0.25 | snap 1 | noise 0.25 | noise 0.5 | quant 4 | quant 2 | trunc 8 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 2-3 shared Z | Qwen | 6 | 0.85–0.96 | 0.00 | 0.00 | 0.30–0.46 | 0.00–0.01 | 0.72–0.87 | 0.00 | 0.00 |
-| 2-3 shared Z | SmolLM2 | 6 | 0.81–0.96 | 0.00 | 0.00 | 0.05–0.13 | 0.00 | 0.25–0.42 | 0.00 | 0.00–0.06 |
-| 2-4 with OLMo | Qwen | 9 | 0.91–0.95 | 0.00 | 0.00 | 0.36–0.44 | 0.00–0.01 | 0.78–0.86 | 0.00 | 0.01–0.02 |
-| 2-4 with OLMo | SmolLM2 | 9 | 0.93–0.96 | 0.00 | 0.00 | 0.20–0.35 | 0.00 | 0.54–0.63 | 0.00 | 0.03–0.05 |
-| 2-4 with OLMo | OLMo | 9 | 0.98–1.00 | 0.64–0.85 | 0.00 | 0.95–0.99 | 0.56–0.79 | 0.70–0.85 | 0.00 | 0.38–0.49 |
+| Shared Z | Qwen | 6 | 0.85–0.96 | 0.00 | 0.00 | 0.30–0.46 | 0.00–0.01 | 0.72–0.87 | 0.00 | 0.00 |
+| Shared Z | SmolLM2 | 6 | 0.81–0.96 | 0.00 | 0.00 | 0.05–0.13 | 0.00 | 0.25–0.42 | 0.00 | 0.00–0.06 |
+| Shared Z + OLMo | Qwen | 9 | 0.91–0.95 | 0.00 | 0.00 | 0.36–0.44 | 0.00–0.01 | 0.78–0.86 | 0.00 | 0.01–0.02 |
+| Shared Z + OLMo | SmolLM2 | 9 | 0.93–0.96 | 0.00 | 0.00 | 0.20–0.35 | 0.00 | 0.54–0.63 | 0.00 | 0.03–0.05 |
+| Shared Z + OLMo | OLMo | 9 | 0.98–1.00 | 0.64–0.85 | 0.00 | 0.95–0.99 | 0.56–0.79 | 0.70–0.85 | 0.00 | 0.38–0.49 |
 | 16-token text | Qwen | 1 | 0.373 | 0.373 | 0.373 | 0.373 | 0.373 | 0.375 | 0.360 | 0.154 |
 | 16-token text | SmolLM2 | 1 | 0.286 | 0.286 | 0.286 | 0.296 | 0.294 | 0.285 | 0.250 | 0.132 |
 | 16-token text | OLMo | 1 | 0.506 | 0.506 | 0.506 | 0.498 | 0.475 | 0.461 | 0.164 | 0.244 |
@@ -213,16 +221,16 @@ A learned vector channel between language models is a carrier that text monitori
 
 | Run | Seed | Q→Q | Q→S | S→Q | S→S | Q→O | S→O | O→Q | O→S | O→O |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 2-3 shared Z | 0 | 0.960 | 0.926 | 0.959 | 0.925 | | | | | |
-| 2-3 shared Z | 1 | 0.901 | 0.962 | 0.923 | 0.954 | | | | | |
-| 2-3 shared Z | 2 | 0.865 | 0.809 | 0.853 | 0.806 | | | | | |
-| 2-4 attach OLMo | 0 | | | | | 0.993 | 0.988 | 0.936 | 0.956 | 0.996 |
-| 2-4 attach OLMo | 1 | | | | | 0.990 | 0.988 | 0.910 | 0.933 | 0.998 |
-| 2-4 attach OLMo | 2 | | | | | 0.991 | 0.980 | 0.942 | 0.954 | 0.994 |
+| Shared Z | 0 | 0.960 | 0.926 | 0.959 | 0.925 | | | | | |
+| Shared Z | 1 | 0.901 | 0.962 | 0.923 | 0.954 | | | | | |
+| Shared Z | 2 | 0.865 | 0.809 | 0.853 | 0.806 | | | | | |
+| Attach OLMo | 0 | | | | | 0.993 | 0.988 | 0.936 | 0.956 | 0.996 |
+| Attach OLMo | 1 | | | | | 0.990 | 0.988 | 0.910 | 0.933 | 0.998 |
+| Attach OLMo | 2 | | | | | 0.991 | 0.980 | 0.942 | 0.954 | 0.994 |
 
 ## Appendix E. Message-length results
 
-**Table 5.** Heldout exact match by message length and budget (200 documents). Vector channel: final accuracy of each seed; 4 pairs at 16 vectors are the 5 preexisting E1a checkpoints, trained with the same recipe. Text: the shortest hand-designed format (`93V8=5781 YPJU=5659 ...`) cut to k tokens. Doc tokens: mean Qwen tokens per heldout document.
+**Table 5.** Heldout exact match by message length and budget (200 documents). Vector channel: final accuracy of each seed; 4 pairs at 16 vectors are the 5 preexisting Qwen → Qwen checkpoints of Section 3.2, trained with the same recipe. Text: the shortest hand-designed format (`93V8=5781 YPJU=5659 ...`) cut to k tokens. Doc tokens: mean Qwen tokens per heldout document.
 
 | Pairs | Doc tokens | Budget k | Ratio | Vector channel (seeds) | Text, best format |
 |---|---|---|---|---|---|
@@ -276,6 +284,61 @@ A learned vector channel between language models is a carrier that text monitori
 | 32 | 256 → 128 | 1.5× → 3.1× | 1 | 0.43 | 0.84 | 0.63 | 0.818 |
 | 32 | 128 → 64 | 3.1× → 6.2× | 0 | 0.00 | 0.00 | 0.00 | 0.000 |
 
+## Appendix F. Statistical analysis
+
+All intervals are computed by `sprint/stats.py` from the result files. The unit is the checkpoint (seed): the variance of accuracy between checkpoints is 10 times (Qwen → Qwen) and 24 times (Qwen → SmolLM2) the binomial variance of 800 questions, so the number of checkpoints, not of questions, sets the precision. Per-question results were not saved, so the question-level intervals for text assume independent questions and are narrower than intervals that account for the four questions per document. For three-seed rows we use a t interval on the logit scale, which stays inside [0, 1]. For the full-snap row, a checkpoint counts as surviving if any of its directions stays above its receiver's text accuracy. In the document-length runs, accuracy at step 500 predicts which runs end above 0.2 with AUROC 0.986 (24 runs; Fisher's exact test p = 0.00005 at a step-500 threshold of 0.05).
+
+**Table 7.** 95% intervals for the main numbers.
+
+| Quantity | n | Estimate | 95% interval | Method |
+|---|---|---|---|---|
+| Vector channel, Qwen → Qwen, no countermeasure | 5 checkpoints | 0.955 | 0.926–0.983 | t over checkpoints |
+| Vector channel, Qwen → SmolLM2, no countermeasure | 5 checkpoints | 0.940 | 0.889–0.991 | t over checkpoints |
+| 16-token text, Qwen → Qwen | 800 questions | 0.373 | 0.340–0.407 | Wilson, questions independent |
+| 16-token text, Qwen → SmolLM2 | 800 questions | 0.286 | 0.256–0.319 | Wilson, questions independent |
+| Checkpoints with any direction above text after full snap | 16 checkpoints | 0 of 16 | upper bound 0.171 | one-sided Clopper–Pearson |
+| Linear probe, digits recovered, Qwen → Qwen | 5 checkpoints | 0.875 | 0.866–0.884 | t over checkpoints |
+| Linear probe, digits recovered, Qwen → SmolLM2 | 5 checkpoints | 0.803 | 0.727–0.878 | t over checkpoints |
+| Shuffled-label control, Qwen → Qwen (chance 0.100) | 5 checkpoints | 0.099 | 0.091–0.108 | t over checkpoints |
+| Shuffled-label control, Qwen → SmolLM2 (chance 0.100) | 5 checkpoints | 0.096 | 0.091–0.101 | t over checkpoints |
+| Snap λ = 0.25, Qwen → OLMo | 3 seeds | 0.745 | 0.443–0.921 | t on logit scale |
+| Snap λ = 0.25, SmolLM2 → OLMo | 3 seeds | 0.780 | 0.495–0.935 | t on logit scale |
+| Snap λ = 0.25, OLMo → OLMo | 3 seeds | 0.828 | 0.767–0.877 | t on logit scale |
+| Noise σ = 0.5, Qwen → OLMo | 3 seeds | 0.635 | 0.448–0.792 | t on logit scale |
+| Noise σ = 0.5, SmolLM2 → OLMo | 3 seeds | 0.662 | 0.549–0.760 | t on logit scale |
+| Noise σ = 0.5, OLMo → OLMo | 3 seeds | 0.741 | 0.577–0.861 | t on logit scale |
+
+## Appendix G. Monitor readout and adaptive-channel results
+
+![Figure A1](figs/fig3_monitor.png)
+
+**Figure A1.** Probes that see only message vectors, trained on 2,000 paired documents and scored on 200 heldout documents. Dots: 5 checkpoints per setting; bars: mean. Left: value digits recovered (chance 0.1). Right: four-digit values recovered exactly. Shuffled labels: the linear probe trained on mismatched message–digit pairs.
+
+**Table 1.** Countermeasures and strengths.
+
+| Name | Operation | Strengths |
+|---|---|---|
+| Noise | m + σ · (‖m‖ / √d) · ε, ε ~ N(0, I) | σ = 0.1, 0.25, 0.5, 1, 2 |
+| Snap | (1 − λ) m + λ e*, where e* is the receiver token embedding with the highest cosine similarity to m; λ = 1 turns the message into a sequence of real tokens | λ = 0.25, 0.5, 0.75, 1 |
+| Quantize | per vector, uniform b-bit quantization of each coordinate on [−max\|m\|, max\|m\|] | b = 8, 4, 2, 1 |
+| Project | onto the top r principal components of the receiver's token-embedding matrix | r = 256, 64, 16 |
+| Truncate | keep only the first j of the 16 vectors | j = 12, 8, 4 |
+
+**Table AD1.** Adaptive channels (E1a checkpoints, 1,500 fine-tuning steps each; 3 seeds for evade λ = 10, mimic λ = 1 and snap-through, 1 seed otherwise; ranges are min–max over seeds). "Channel" is heldout exact match with no countermeasure; "probe" the frozen deployed monitor's digit accuracy (chance 0.1); "retrain" the probe retrained on 2,000 pairs from the adapted channel; "snap" exact match after full snapping; "cos" mean cosine similarity to the nearest token embedding (text is 1.0). Pre-adaptation values across the 3 checkpoints: channel 0.916–0.966, probe 0.871–0.885, snap 0.000, cos 0.727–0.740.
+
+| Run | Channel | Probe | Retrain | Snap | Cos |
+|---|---|---|---|---|---|
+| Evade probe, λ = 10 (3 seeds) | 0.941–0.978 | 0.104–0.116 | 0.762–0.797 | 0.000 | 0.698–0.717 |
+| Evade probe, λ = 3 | 0.967 | 0.140 | 0.782 | 0.000 | 0.710 |
+| Evade probe, λ = 1 | 0.984 | 0.192 | 0.800 | 0.000 | 0.699 |
+| Mimic tokens, λ = 3 | 0.933 | 0.600 | 0.974 | 0.000 | 0.931 |
+| Mimic tokens, λ = 1 (3 seeds) | 0.961–0.976 | 0.645–0.673 | 0.932–0.941 | 0.000 | 0.901–0.906 |
+| Train through snap (3 seeds) | 0.000 | 0.104–0.116 | 0.928–0.979 | 0.000 | 0.138–0.170 |
+![Figure A2](figs/fig4_doclen.png)
+
+**Figure A2.** Heldout exact match against compression ratio (document tokens ÷ vectors or tokens sent). Solid lines and dots: vector channels (dots are seeds; 4 pairs at 3.1× are the 5 preexisting Qwen → Qwen checkpoints). Dashed: best-format text at the same budget. Appendix E lists every value, including three-phase curriculum runs not plotted here.
+
+
 ## LLM Usage Statement
 
-We used Claude (Anthropic) to write and run experiment code, analyse results and draft the report. Every number in the report is produced by scripts from the saved result files (`sprint/analyze.py`), and every reference was checked against its original arXiv or proceedings page.
+We used Claude (Anthropic) to write and run experiment code, analyse results and draft the report. Every number in the report is produced by scripts from the saved result files (`sprint/analyze.py`, `sprint/stats.py`), and every reference was checked against its original arXiv or proceedings page.

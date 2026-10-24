@@ -19,7 +19,7 @@ from docx.shared import Cm, Pt
 HERE = Path(__file__).resolve().parent
 TITLE = "Cutting the Wire: Countermeasures Against Learned Vector Channels Between Language Models"
 AUTHOR, AFFIL = "Jiho\u00a0Yun", "Independent"  # 저자 칸이 좁아 이름이 두 줄로 꺾이지 않게 줄바꿈 없는 공백
-FIG_WIDTH = {"fig1": 16.5, "fig2": 15.0, "fig3": 11.5}  # cm, 본문 폭 16.5cm
+FIG_WIDTH = {"fig1": 16.5, "fig2": 16.5, "fig3": 15.0, "fig4": 11.5, "fig5": 16.5}  # cm, 본문 폭 16.5cm
 RPR = {}  # 템플릿 안내 문단에서 떼어 온 글자 서식(글꼴 Old Standard TT 등): "body", "Heading 2", "Heading 3"
 
 
