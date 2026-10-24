@@ -30,6 +30,7 @@ Preexisting results quoted in the report (for example "heldout accuracy 0.916 to
 | `doclen.py` | Document-length experiment: runs the preexisting training and text-baseline scripts on documents with 8, 16 or 32 key-value pairs by swapping in a different document generator |
 | `modal_app.py`, `spawn.py`, `status.py` | Running jobs on Modal GPUs; logs and outputs go to the `model-comm` volume |
 | `analyze.py` | Figures and tables in the report, generated from the result files |
+| `stats.py` | Confidence intervals, seed-count planning, variance split and the step-500 predictor, from the same result files (no new runs) |
 | `paper/` | Report source (`report.md`), references, figures, and the script that fills the official template (`build_docx.py`) |
 | `results/` | Sprint result files (`results/modal/runs/` document-length runs, `results/modal/runs_c3/` three-phase curriculum runs) |
 
