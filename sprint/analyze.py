@@ -171,8 +171,8 @@ def fig_overview():
     text16 = tok.decode(tok(compact, add_special_tokens=False).input_ids[:16])
     snapped = " ".join(t.strip() or "␣" for t in ex["tokens"][:6]) + " …"
 
-    fig, ax = plt.subplots(figsize=(6.5, 3.4))
-    ax.set_xlim(0, 100); ax.set_ylim(-13, 42); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(6.5, 2.6))
+    ax.set_xlim(0, 100); ax.set_ylim(0, 42); ax.axis("off")
     PAPER, SOFT = "#f3f2ee", "#eaf1fb"
 
     def box(x, y, w, h, title, body="", fc=PAPER, ec=MUTED, ls="-", lw=0.8, size=6.5):
@@ -207,18 +207,6 @@ def fig_overview():
     ax.text(87, 24.6, f"vector {mean('none', 0):.3f}\nafter snap {mean('snap', 1.0):.3f}", ha="left", va="top", fontsize=6.5,
             color=VEC, linespacing=1.3)
     ax.text(87, 8.6, f"text {txt:.3f}\nafter snap {txt:.3f}", ha="left", va="top", fontsize=6.5, color=INK, linespacing=1.3)
-
-    # 하단 스트립: 적응 공격자 3전략과 각각 걸리는 방어(4.3, Table AD2). 페이지를 아끼려 그림 1 안에 넣는다.
-    ax.text(50, -1.2, "Adaptive attacker (Section 4.3): each evasion walks into the next defence", ha="center", va="top",
-            fontsize=7, color=INK, fontweight="bold")
-    corners = [
-        ("① Evade the probe", "probe blinded (0.10), but cosine\nstays 0.70–0.72 → unpaired\ndetector flags it"),
-        ("② Mimic tokens", "cosine 0.90–0.93, below token 0.95;\nfull snap still removes it (0.000)"),
-        ("③ Train through the snap", "STE training collapses the channel:\n0.000 in all 6 runs"),
-    ]
-    for i, (t, o) in enumerate(corners):
-        x = 2 + i * 33
-        box(x, -11.5, 31, 8.5, t, o, fc=SOFT, ec=VEC, lw=0.9, size=5.8)
     fig.tight_layout(pad=0.1)
     for ext in ("png", "pdf"):
         fig.savefig(FIG / f"fig1_overview.{ext}", dpi=300, bbox_inches="tight")
