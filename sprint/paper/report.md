@@ -17,7 +17,7 @@ We ask: **when two frozen LLMs communicate through a learned vector channel, whi
 
 ![Figure 1](figs/fig1_overview.png)
 
-**Figure 1.** Setup. Only the sender sees the document. Vector path (blue): a trained adapter turns the sender's hidden states into 16 vectors that the frozen receiver reads in place of text. Text path: the same budget of 16 tokens in the best hand-designed format, which fits 2 of the 4 values. The defender controls the receiver's input; full snapping replaces each vector with its nearest token embedding and leaves text unchanged. The monitor reads the vectors without the receiver. Numbers: Qwen → Qwen, mean of 5 checkpoints; the document and nearest-token reading are from checkpoint 0.
+**Figure 1.** Setup. Only the sender sees the document. Vector path (blue): a trained adapter turns the sender's hidden states into 16 vectors that the frozen receiver reads in place of text. Text path: the same budget of 16 tokens in the best hand-designed format, which fits 2 of the 4 values. The defender controls the receiver's input; full snapping replaces each vector with its nearest token embedding and leaves text unchanged. The monitor reads the vectors without the receiver. Numbers: Qwen → Qwen, mean of 5 checkpoints; the document and nearest-token reading are from checkpoint 0. Bottom strip: each adaptive channel of Section 4.3 and the defence that catches it.
 
 Our contributions, all made during the sprint (Section 3.5 separates preexisting work):
 

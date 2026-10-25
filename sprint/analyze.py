@@ -171,8 +171,8 @@ def fig_overview():
     text16 = tok.decode(tok(compact, add_special_tokens=False).input_ids[:16])
     snapped = " ".join(t.strip() or "␣" for t in ex["tokens"][:6]) + " …"
 
-    fig, ax = plt.subplots(figsize=(6.5, 2.6))
-    ax.set_xlim(0, 100); ax.set_ylim(0, 42); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(6.5, 3.4))
+    ax.set_xlim(0, 100); ax.set_ylim(-13, 42); ax.axis("off")
     PAPER, SOFT = "#f3f2ee", "#eaf1fb"
 
     def box(x, y, w, h, title, body="", fc=PAPER, ec=MUTED, ls="-", lw=0.8, size=6.5):
@@ -207,6 +207,20 @@ def fig_overview():
     ax.text(87, 24.6, f"vector {mean('none', 0):.3f}\nafter snap {mean('snap', 1.0):.3f}", ha="left", va="top", fontsize=6.5,
             color=VEC, linespacing=1.3)
     ax.text(87, 8.6, f"text {txt:.3f}\nafter snap {txt:.3f}", ha="left", va="top", fontsize=6.5, color=INK, linespacing=1.3)
+
+    # 하단 스트립: 적응 공격자 3전략과 각각 걸리는 방어(4.3, Table AD2). 페이지를 아끼려 그림 1 안에 넣는다.
+    ax.text(50, -1.2, "Adaptive channels (Section 4.3): every evasion is cornered", ha="center", va="top",
+            fontsize=7, color=INK, fontweight="bold")
+    corners = [
+        ("Evade the probe", "channel keeps\n0.94–0.98", "monitor blinded (0.10); cos stays\n0.70–0.72 → detector flags it"),
+        ("Mimic tokens", "channel keeps\n0.96–0.98", "cos 0.90–0.91 < 0.95; and full\nsnap removes it (0.000)"),
+        ("Train through the snap", "STE + Gumbel,\n6 runs", "collapses: 0.000 in 6/6\n(receiver-usable channel)"),
+    ]
+    for i, (t, s, o) in enumerate(corners):
+        x = 2 + i * 33
+        box(x, -11.5, 13, 8.5, t, s, size=5.8)
+        arrow(x + 13, -7.2, x + 15, -7.2, VEC)
+        box(x + 15, -11.5, 16, 8.5, "", o, fc=SOFT, ec=MUTED, size=5.8)
     fig.tight_layout(pad=0.1)
     for ext in ("png", "pdf"):
         fig.savefig(FIG / f"fig1_overview.{ext}", dpi=300, bbox_inches="tight")
