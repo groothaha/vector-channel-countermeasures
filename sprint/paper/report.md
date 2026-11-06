@@ -356,6 +356,3 @@ All intervals are computed by `sprint/stats.py` from the result files. The unit 
 **Figure A2.** Heldout exact match against compression ratio (document tokens ÷ vectors or tokens sent). Solid lines and dots: vector channels (dots are seeds; 4 pairs at 3.1× are the 5 preexisting Qwen → Qwen checkpoints). Dashed: best-format text at the same budget. Appendix E lists every value, including three-phase curriculum runs not plotted here.
 
 
-## LLM Usage Statement
-
-We used Claude (Anthropic) to write and run experiment code, analyse results and draft the report. Every number in the report is produced by scripts from the saved result files (`sprint/analyze.py`, `sprint/stats.py`), and every reference was checked against its original arXiv or proceedings page.
